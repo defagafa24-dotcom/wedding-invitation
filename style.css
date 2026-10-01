@@ -880,7 +880,7 @@ h3 {
   width: 240px;
   height: 430px;
 
-  opacity: .16;
+  opacity: .26;
 
   transform-origin: bottom center;
 }
@@ -1063,16 +1063,16 @@ h3 {
 .flying-bird {
   position: absolute;
 
-  width: 55px;
+  width: 75px;
 
   color:
-    rgba(52,59,62,.24);
+    rgba(52,59,62,.45);
 
   opacity: 0;
 
   animation:
     birdFlight
-    18s
+    14s
     linear
     infinite;
 }
@@ -1166,7 +1166,7 @@ h3 {
 
   font-size: 28px;
 
-  opacity: 0;
+  opacity: .25;
 
   animation:
     leafFlight
