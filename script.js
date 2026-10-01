@@ -4,23 +4,24 @@ function updateCountdown() {
   const now = new Date();
   const diff = weddingDate - now;
 
+  const ids = ["days", "hours", "minutes", "seconds"];
+
   if (diff <= 0) {
-    document.getElementById("days").textContent = "0";
-    document.getElementById("hours").textContent = "0";
-    document.getElementById("minutes").textContent = "0";
-    document.getElementById("seconds").textContent = "0";
+    ids.forEach(id => document.getElementById(id).textContent = "0");
     return;
   }
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
+  document.getElementById("days").textContent =
+    Math.floor(diff / (1000 * 60 * 60 * 24));
 
-  document.getElementById("days").textContent = days;
-  document.getElementById("hours").textContent = hours;
-  document.getElementById("minutes").textContent = minutes;
-  document.getElementById("seconds").textContent = seconds;
+  document.getElementById("hours").textContent =
+    Math.floor(diff / (1000 * 60 * 60) % 24);
+
+  document.getElementById("minutes").textContent =
+    Math.floor(diff / (1000 * 60) % 60);
+
+  document.getElementById("seconds").textContent =
+    Math.floor(diff / 1000 % 60);
 }
 
 updateCountdown();
@@ -32,69 +33,105 @@ const openBtn = document.getElementById("openBtn");
 const bgMusic = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicBtn");
 
+/* Opening animation + music */
 openBtn.addEventListener("click", async () => {
   welcome.classList.add("hidden");
   site.classList.remove("hidden");
   musicBtn.classList.remove("hidden");
-  window.scrollTo(0, 0);
+  window.scrollTo({ top: 0, behavior: "instant" });
 
-  // Because this happens directly from the user's tap, iOS/iPadOS
-  // browsers are allowed to start the music here.
   try {
     await bgMusic.play();
     musicBtn.textContent = "♪";
-    musicBtn.setAttribute("aria-label", "Pause background music");
-    musicBtn.setAttribute("title", "Pause music");
   } catch (error) {
-    // If the browser blocks playback, the floating button remains available.
     musicBtn.textContent = "♪";
   }
+
+  revealVisible();
 });
 
+/* Music control */
 musicBtn.addEventListener("click", async () => {
   if (bgMusic.paused) {
     try {
       await bgMusic.play();
       musicBtn.textContent = "♪";
       musicBtn.setAttribute("aria-label", "Pause background music");
-      musicBtn.setAttribute("title", "Pause music");
-    } catch (error) {
-      console.log("Music playback was blocked by the browser.");
-    }
+    } catch (error) {}
   } else {
     bgMusic.pause();
     musicBtn.textContent = "Ⅱ";
     musicBtn.setAttribute("aria-label", "Play background music");
-    musicBtn.setAttribute("title", "Play music");
   }
 });
 
-document.getElementById("rsvpForm").addEventListener("submit", (e) => {
+/* Story interaction */
+const storyTabs = document.querySelectorAll(".story-tab");
+const storyPanels = document.querySelectorAll(".story-panel");
+
+storyTabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    const target = tab.dataset.story;
+
+    storyTabs.forEach(item => item.classList.remove("active"));
+    storyPanels.forEach(panel => panel.classList.remove("active"));
+
+    tab.classList.add("active");
+    document.querySelector(`[data-panel="${target}"]`).classList.add("active");
+  });
+});
+
+/* RSVP */
+document.getElementById("rsvpForm").addEventListener("submit", e => {
   e.preventDefault();
   document.getElementById("rsvpForm").classList.add("hidden");
   document.getElementById("rsvpMessage").classList.remove("hidden");
 });
 
-document.querySelectorAll(".copy-account").forEach((button) => {
+/* Copy account numbers */
+document.querySelectorAll(".copy-account").forEach(button => {
   button.addEventListener("click", async () => {
     const account = button.dataset.account;
+    const original = button.textContent;
+
     try {
       await navigator.clipboard.writeText(account);
-      const original = button.textContent;
-      button.textContent = "Copied ✓";
-      setTimeout(() => {
-        button.textContent = original;
-      }, 1500);
-    } catch (error) {
+    } catch {
       const temp = document.createElement("input");
       temp.value = account;
       document.body.appendChild(temp);
       temp.select();
       document.execCommand("copy");
       temp.remove();
-      const original = button.textContent;
-      button.textContent = "Copied ✓";
-      setTimeout(() => button.textContent = original, 1500);
     }
+
+    button.textContent = "Copied ✓";
+
+    setTimeout(() => {
+      button.textContent = original;
+    }, 1500);
   });
 });
+
+/* Scroll reveal animation */
+const revealElements = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+revealElements.forEach(element => observer.observe(element));
+
+function revealVisible() {
+  document.querySelectorAll("#site .reveal").forEach(element => {
+    const rect = element.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.9) {
+      element.classList.add("visible");
+    }
+  });
+}
