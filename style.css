@@ -2728,3 +2728,112 @@ footer {
   }
 
 }
+/* =========================
+   MOBILE STORY EXPERIENCE
+========================= */
+
+@media (max-width: 700px) {
+
+  .story-section {
+    overflow: hidden;
+  }
+
+  /* Let the scenery show around the story */
+  .story-layout {
+    display: block;
+
+    background: rgba(251,248,241,.72);
+
+    backdrop-filter: blur(5px);
+
+    min-height: auto;
+  }
+
+
+  /* Horizontal story chapters */
+  .story-nav {
+    display: flex;
+
+    overflow-x: auto;
+
+    width: 100%;
+
+    scrollbar-width: none;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .story-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+
+  .story-tab {
+    flex: 0 0 150px;
+
+    min-height: 105px;
+
+    padding: 22px 18px;
+
+    text-align: left;
+  }
+
+
+  /* Story content */
+  .story-content {
+    min-height: 430px;
+
+    padding: 55px 30px;
+  }
+
+
+  .story-panel {
+    padding: 0;
+  }
+
+
+  .story-panel h3 {
+    font-size: 42px;
+
+    line-height: 1.05;
+  }
+
+
+  .story-panel p {
+    font-size: 20px;
+
+    line-height: 1.65;
+  }
+
+
+  /* Make the scenery visible on phones */
+
+  .scene-tree {
+    opacity: .22;
+  }
+
+
+  .scene-cloud {
+    opacity: .65;
+  }
+
+
+  .flying-bird {
+    width: 55px;
+
+    color:
+      rgba(52,59,62,.40);
+  }
+
+
+  /* Keep background scenery behind content */
+
+  .story-background {
+    z-index: 0;
+  }
+
+  .story-layout {
+    z-index: 2;
+  }
+
+}
