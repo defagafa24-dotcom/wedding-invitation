@@ -579,3 +579,373 @@ if (storySectionV3) {
     });
   }, { passive: true });
 }
+/* =========================================================
+   V4 — WHOLE-PAGE CINEMATIC EXPERIENCE
+========================================================= */
+
+(() => {
+  const siteV4 = document.getElementById("site");
+  if (!siteV4) return;
+
+  const reduceMotionV4 =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* -------------------------------------------------------
+     ATMOSPHERIC LIGHT + PARTICLES
+  ------------------------------------------------------- */
+
+  if (!reduceMotionV4) {
+    const layer = document.createElement("div");
+    layer.className = "v4-cinematic-layer";
+    layer.setAttribute("aria-hidden", "true");
+
+    const vignette = document.createElement("div");
+    vignette.className = "v4-vignette";
+    layer.appendChild(vignette);
+
+    const lightOne = document.createElement("div");
+    lightOne.className = "v4-light v4-light-one";
+    layer.appendChild(lightOne);
+
+    const lightTwo = document.createElement("div");
+    lightTwo.className = "v4-light v4-light-two";
+    layer.appendChild(lightTwo);
+
+    const particleCount =
+      window.innerWidth < 700 ? 18 : 32;
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement("span");
+      particle.className = "v4-particle";
+
+      particle.style.left =
+        Math.random() * 100 + "%";
+
+      particle.style.top =
+        35 + Math.random() * 65 + "%";
+
+      particle.style.setProperty(
+        "--duration",
+        (8 + Math.random() * 10) + "s"
+      );
+
+      particle.style.setProperty(
+        "--delay",
+        (-Math.random() * 12) + "s"
+      );
+
+      particle.style.setProperty(
+        "--drift-x",
+        ((Math.random() - .5) * 100) + "px"
+      );
+
+      const size = 1.5 + Math.random() * 2.5;
+
+      particle.style.width = size + "px";
+      particle.style.height = size + "px";
+
+      layer.appendChild(particle);
+    }
+
+    siteV4.appendChild(layer);
+  }
+
+  /* -------------------------------------------------------
+     CINEMATIC SCROLL CAMERA
+  ------------------------------------------------------- */
+
+  let ticking = false;
+
+  function updateCinematicScroll() {
+    const scrollY =
+      window.scrollY ||
+      window.pageYOffset ||
+      0;
+
+    document.documentElement.style.setProperty(
+      "--v4-scroll",
+      scrollY + "px"
+    );
+
+    const sections = siteV4.querySelectorAll(
+      ":scope > section"
+    );
+
+    const viewport =
+      window.innerHeight || 1;
+
+    sections.forEach(section => {
+      const rect =
+        section.getBoundingClientRect();
+
+      const center =
+        rect.top + rect.height / 2;
+
+      const distance =
+        (center - viewport / 2) / viewport;
+
+      const depth =
+        Math.max(-1, Math.min(1, distance));
+
+      section.style.setProperty(
+        "--v4-depth",
+        depth.toFixed(3)
+      );
+
+      section.style.setProperty(
+        "--v4-camera-y",
+        (depth * -12).toFixed(1) + "px"
+      );
+    });
+
+    ticking = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+
+      ticking = true;
+      requestAnimationFrame(updateCinematicScroll);
+    },
+    { passive: true }
+  );
+
+  updateCinematicScroll();
+    /* -------------------------------------------------------
+     CINEMATIC SECTION REVEALS
+  ------------------------------------------------------- */
+
+  const cinematicSections =
+    siteV4.querySelectorAll(
+      ":scope > section"
+    );
+
+  if (
+    !reduceMotionV4 &&
+    "IntersectionObserver" in window
+  ) {
+
+    const sectionObserver =
+      new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add(
+              "v4-section-visible"
+            );
+
+            const revealItems =
+              entry.target.querySelectorAll(
+                ".reveal"
+              );
+
+            revealItems.forEach((item, index) => {
+              item.style.transitionDelay =
+                Math.min(index * 90, 450) + "ms";
+            });
+          });
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+    cinematicSections.forEach(section => {
+      sectionObserver.observe(section);
+    });
+  }
+
+  /* -------------------------------------------------------
+     GENTLE POINTER PARALLAX
+  ------------------------------------------------------- */
+
+  if (
+    !reduceMotionV4 &&
+    window.matchMedia("(pointer:fine)").matches
+  ) {
+
+    let pointerX = 0;
+    let pointerY = 0;
+
+    window.addEventListener(
+      "pointermove",
+      event => {
+
+        pointerX =
+          (event.clientX / window.innerWidth - .5);
+
+        pointerY =
+          (event.clientY / window.innerHeight - .5);
+
+        siteV4.style.setProperty(
+          "--v4-pointer-x",
+          pointerX.toFixed(3)
+        );
+
+        siteV4.style.setProperty(
+          "--v4-pointer-y",
+          pointerY.toFixed(3)
+        );
+      },
+      { passive: true }
+    );
+  }
+
+  /* -------------------------------------------------------
+     GALLERY — MOVING PHOTOGRAPH EFFECT
+  ------------------------------------------------------- */
+
+  const galleryItems =
+    siteV4.querySelectorAll(".gallery-item");
+
+  galleryItems.forEach(item => {
+
+    item.addEventListener(
+      "pointermove",
+      event => {
+
+        if (
+          reduceMotionV4 ||
+          window.innerWidth < 800
+        ) {
+          return;
+        }
+
+        const rect =
+          item.getBoundingClientRect();
+
+        const x =
+          (event.clientX - rect.left) /
+          rect.width - .5;
+
+        const y =
+          (event.clientY - rect.top) /
+          rect.height - .5;
+
+        item.style.transform =
+          `translateY(-6px)
+           rotateX(${y * -2}deg)
+           rotateY(${x * 2}deg)`;
+      },
+      { passive: true }
+    );
+
+    item.addEventListener(
+      "pointerleave",
+      () => {
+        item.style.transform = "";
+      },
+      { passive: true }
+    );
+
+  });
+    /* -------------------------------------------------------
+     STORY CHAPTER ATMOSPHERE
+  ------------------------------------------------------- */
+
+  const storyV4 =
+    siteV4.querySelector(".story-section");
+
+  if (storyV4) {
+
+    const tabs =
+      storyV4.querySelectorAll(".story-tab");
+
+    const dots =
+      storyV4.querySelectorAll(".journey-dot");
+
+    function setChapter(target) {
+
+      storyV4.dataset.chapter = target;
+
+      storyV4.style.setProperty(
+        "--story-chapter",
+        target
+      );
+    }
+
+    tabs.forEach(tab => {
+
+      tab.addEventListener(
+        "click",
+        () => {
+
+          setChapter(
+            tab.dataset.story || "0"
+          );
+
+        }
+      );
+
+    });
+
+    dots.forEach(dot => {
+
+      dot.addEventListener(
+        "click",
+        () => {
+
+          setChapter(
+            dot.dataset.journey || "0"
+          );
+
+        }
+      );
+
+    });
+
+    const active =
+      storyV4.querySelector(
+        ".story-tab.active"
+      );
+
+    setChapter(
+      active?.dataset.story || "0"
+    );
+  }
+
+  /* -------------------------------------------------------
+     FINAL CLOSING REVEAL
+  ------------------------------------------------------- */
+
+  const closing =
+    siteV4.querySelector(".closing");
+
+  if (
+    closing &&
+    !reduceMotionV4 &&
+    "IntersectionObserver" in window
+  ) {
+
+    const closingObserver =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (
+              entry.isIntersecting
+            ) {
+
+              closing.classList.add(
+                "v4-closing-visible"
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.25
+        }
+      );
+
+    closingObserver.observe(closing);
+  }
+
+})();
