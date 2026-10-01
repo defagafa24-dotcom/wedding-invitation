@@ -1,59 +1,492 @@
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#f7f4ee;color:#161616;font-family:Montserrat,Arial,sans-serif;font-size:14px;line-height:1.8}
-.hidden{display:none!important}
-.welcome{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px}
-.welcome-inner{max-width:650px}
-.eyebrow{font-size:10px;letter-spacing:.25em;font-weight:500}
-.welcome h1,.hero h1,h2{font-family:"Cormorant Garamond",serif;font-weight:500}
-.welcome h1{font-size:64px;line-height:1.05;margin:20px 0}
-.names{letter-spacing:.14em;font-size:13px;line-height:2.1;margin-bottom:35px}
-.button{border:1px solid #161616;background:transparent;padding:13px 26px;letter-spacing:.12em;text-transform:uppercase;font-size:11px;cursor:pointer}
-.button:hover{background:#161616;color:#f7f4ee}
-.hero{text-align:center;padding:120px 25px 100px}
-.hero h1{font-size:78px;line-height:1;margin:18px 0}
-.hero h1 span{font-style:italic}
-.date{letter-spacing:.22em;font-size:12px}
-.countdown-section{text-align:center;border-top:1px solid #d8d3ca;border-bottom:1px solid #d8d3ca;padding:50px 20px}
-.countdown{display:flex;justify-content:center;gap:55px;margin-top:25px}
-.countdown div{display:flex;flex-direction:column;min-width:65px}
-.countdown strong{font-family:"Cormorant Garamond",serif;font-size:42px;font-weight:500;line-height:1}
-.countdown span{font-size:9px;letter-spacing:.18em;margin-top:8px}
-.section{max-width:900px;margin:auto;padding:110px 25px}
-.section>h2{font-size:52px;line-height:1.1;margin:14px 0 40px}
-.story{text-align:center}
-.story-text{max-width:650px;margin:auto;font-family:"Cormorant Garamond",serif;font-size:22px;line-height:1.7}
-.story-text p{margin:0 0 28px}
-.details{text-align:center}
-.details-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.detail-card,.gift-account{border:1px solid #d8d3ca;padding:35px 20px}
-.detail-card h3{font-size:11px;letter-spacing:.18em;margin-bottom:15px}
-.detail-card p{font-size:11px;letter-spacing:.1em}
-.gallery{text-align:center}
-.gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-.gallery-grid img{width:100%;display:block}
-.rsvp{text-align:center;max-width:600px}
-.rsvp form{display:grid;gap:12px}
-.rsvp input,.rsvp select{width:100%;padding:14px;border:1px solid #d8d3ca;background:transparent;font:inherit;color:#161616}
-.extras{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.extra-card{border:1px solid #d8d3ca;padding:35px}
-.extra-card h2{font-size:40px;margin:12px 0 18px}
-.gift-account{margin-top:14px;padding:22px}
-.gift-account p{font-size:11px;letter-spacing:.08em}
-.account-number{font-size:18px!important;letter-spacing:.12em!important;margin:7px 0 12px}
-.copy-account{border:1px solid #161616;background:transparent;padding:8px 14px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
-.copy-account:hover{background:#161616;color:#f7f4ee}
-footer{text-align:center;border-top:1px solid #d8d3ca;padding:45px 20px;font-size:10px;letter-spacing:.18em}
-.music-button{position:fixed;right:20px;bottom:20px;width:46px;height:46px;border:1px solid #161616;border-radius:50%;background:#f7f4ee;color:#161616;z-index:20;cursor:pointer;font-family:"Cormorant Garamond",serif;font-size:20px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
-@media(max-width:700px){
-.welcome h1{font-size:48px}
-.hero{padding:90px 20px 75px}
-.hero h1{font-size:58px}
-.countdown{gap:18px}
-.countdown strong{font-size:32px}
-.section{padding:80px 20px}
-.section>h2{font-size:43px}
-.story-text{font-size:20px}
-.details-grid,.extras{grid-template-columns:1fr}
-.gallery-grid{gap:10px}
-.extra-card{padding:25px}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ivory: #f7f2ea;
+  --cream: #fffdf8;
+  --sage: #7d8b78;
+  --sage-dark: #596653;
+  --rose: #b88982;
+  --gold: #c5a46d;
+  --gold-light: #d9c59a;
+  --text: #3f4038;
+  --muted: #77766d;
+  --line: #ddd3c3;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ivory);
+  color: var(--text);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ---------- GENERAL ---------- */
+
+.eyebrow {
+  color: var(--sage-dark);
+  font-size: 10px;
+  letter-spacing: .28em;
+  font-weight: 500;
+}
+
+h1,
+h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* ---------- BUTTON ---------- */
+
+.button {
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--text);
+  padding: 14px 30px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.button:hover {
+  background: var(--sage);
+  border-color: var(--sage);
+  color: var(--cream);
+}
+
+/* ---------- OPENING ---------- */
+
+.welcome {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome::before,
+.welcome::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border: 1px solid var(--gold-light);
+  border-radius: 50%;
+  opacity: .45;
+}
+
+.welcome::before {
+  top: -90px;
+  left: -90px;
+}
+
+.welcome::after {
+  bottom: -90px;
+  right: -90px;
+}
+
+.welcome-inner {
+  max-width: 650px;
+  position: relative;
+  z-index: 2;
+}
+
+.welcome h1 {
+  font-size: 72px;
+  line-height: 1;
+  margin: 22px 0;
+  color: var(--sage-dark);
+}
+
+.names {
+  color: var(--rose);
+  letter-spacing: .17em;
+  font-size: 12px;
+  line-height: 2.3;
+  margin-bottom: 38px;
+}
+
+/* ---------- HERO ---------- */
+
+.hero {
+  text-align: center;
+  padding: 140px 25px 115px;
+  position: relative;
+}
+
+.hero::after {
+  content: "❦";
+  display: block;
+  color: var(--gold);
+  font-size: 26px;
+  margin-top: 35px;
+}
+
+.hero h1 {
+  font-size: 90px;
+  line-height: 1;
+  margin: 20px 0;
+  color: var(--sage-dark);
+}
+
+.hero h1 span {
+  color: var(--rose);
+  font-style: italic;
+}
+
+.date {
+  color: var(--gold);
+  letter-spacing: .3em;
+  font-size: 11px;
+}
+
+/* ---------- COUNTDOWN ---------- */
+
+.countdown-section {
+  text-align: center;
+  background: var(--sage);
+  color: var(--cream);
+  padding: 60px 20px;
+}
+
+.countdown-section .eyebrow {
+  color: var(--gold-light);
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 30px;
+}
+
+.countdown div {
+  display: flex;
+  flex-direction: column;
+  min-width: 65px;
+}
+
+.countdown strong {
+  font-family: "Cormorant Garamond", serif;
+  color: var(--cream);
+  font-size: 46px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.countdown span {
+  color: var(--gold-light);
+  font-size: 9px;
+  letter-spacing: .18em;
+  margin-top: 9px;
+}
+
+/* ---------- SECTIONS ---------- */
+
+.section {
+  max-width: 950px;
+  margin: auto;
+  padding: 120px 25px;
+}
+
+.section > h2 {
+  font-size: 56px;
+  line-height: 1.1;
+  margin: 15px 0 45px;
+}
+
+/* ---------- STORY ---------- */
+
+.story {
+  text-align: center;
+}
+
+.story::after {
+  content: "✦";
+  display: block;
+  color: var(--gold);
+  font-size: 18px;
+  margin-top: 55px;
+}
+
+.story-text {
+  max-width: 650px;
+  margin: auto;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 23px;
+  line-height: 1.75;
+  color: #55554c;
+}
+
+.story-text p {
+  margin-bottom: 30px;
+}
+
+/* ---------- DETAILS ---------- */
+
+.details {
+  text-align: center;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.detail-card {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  padding: 42px 25px;
+  position: relative;
+}
+
+.detail-card::before {
+  content: "✦";
+  display: block;
+  color: var(--gold);
+  margin-bottom: 15px;
+}
+
+.detail-card h3 {
+  color: var(--sage-dark);
+  font-size: 11px;
+  letter-spacing: .2em;
+  margin-bottom: 18px;
+}
+
+.detail-card p {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: .1em;
+  margin: 4px 0;
+}
+
+/* ---------- GALLERY ---------- */
+
+.gallery {
+  text-align: center;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  display: block;
+  background: var(--cream);
+  padding: 7px;
+  border: 1px solid var(--line);
+  transition: transform .3s ease;
+}
+
+.gallery-grid img:hover {
+  transform: translateY(-3px);
+}
+
+/* ---------- RSVP ---------- */
+
+.rsvp {
+  text-align: center;
+  max-width: 650px;
+}
+
+.rsvp form {
+  display: grid;
+  gap: 14px;
+}
+
+.rsvp input,
+.rsvp select {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid var(--line);
+  background: var(--cream);
+  color: var(--text);
+  font-family: inherit;
+  outline: none;
+}
+
+.rsvp input:focus,
+.rsvp select:focus {
+  border-color: var(--sage);
+}
+
+/* ---------- GIFT ---------- */
+
+.extras {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.extra-card {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  padding: 40px 30px;
+}
+
+.extra-card h2 {
+  color: var(--sage-dark);
+  font-size: 45px;
+  margin: 12px 0 20px;
+}
+
+.extra-card > p {
+  color: var(--muted);
+}
+
+.gift-account {
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  margin-top: 16px;
+  padding: 23px;
+}
+
+.gift-account p {
+  color: var(--sage-dark);
+  font-size: 11px;
+  letter-spacing: .08em;
+}
+
+.account-number {
+  color: var(--rose) !important;
+  font-size: 19px !important;
+  letter-spacing: .12em !important;
+  margin: 7px 0 13px;
+}
+
+.copy-account {
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--text);
+  padding: 9px 15px;
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.copy-account:hover {
+  background: var(--gold);
+  color: white;
+}
+
+/* ---------- MUSIC ---------- */
+
+.music-button {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 50px;
+  height: 50px;
+
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+
+  background: var(--cream);
+  color: var(--sage-dark);
+
+  z-index: 20;
+  cursor: pointer;
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 21px;
+
+  box-shadow: 0 5px 20px rgba(70, 60, 40, .12);
+
+  transition: all .3s ease;
+}
+
+.music-button:hover {
+  background: var(--sage);
+  color: var(--cream);
+}
+
+/* ---------- FOOTER ---------- */
+
+footer {
+  text-align: center;
+  background: var(--sage);
+  color: var(--gold-light);
+  padding: 50px 20px;
+  font-size: 10px;
+  letter-spacing: .2em;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 700px) {
+
+  .welcome h1 {
+    font-size: 52px;
+  }
+
+  .hero {
+    padding: 100px 20px 80px;
+  }
+
+  .hero h1 {
+    font-size: 62px;
+  }
+
+  .countdown {
+    gap: 18px;
+  }
+
+  .countdown strong {
+    font-size: 34px;
+  }
+
+  .section {
+    padding: 85px 20px;
+  }
+
+  .section > h2 {
+    font-size: 44px;
+  }
+
+  .story-text {
+    font-size: 21px;
+  }
+
+  .details-grid,
+  .extras {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid {
+    gap: 10px;
+  }
+
+  .extra-card {
+    padding: 30px 22px;
+  }
+
+  .music-button {
+    right: 16px;
+    bottom: 16px;
+  }
 }
