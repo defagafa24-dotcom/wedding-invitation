@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Anisa & Defa — Wedding Invitation</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600&display=swap"
     rel="stylesheet"
   >
 
@@ -19,31 +18,42 @@
 
 <body>
 
-  <!-- OPENING INVITATION -->
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <!-- OPENING -->
   <section id="welcome" class="welcome">
+
+    <div class="welcome-stars"></div>
+
     <div class="welcome-inner">
 
-      <p class="eyebrow">
+      <p class="eyebrow reveal">
         YOU ARE CORDIALLY INVITED
       </p>
 
-      <h1>
+      <div class="ornament reveal">✦</div>
+
+      <h1 class="reveal">
         Our Wedding
       </h1>
 
-      <p class="names">
+      <p class="names reveal">
         ANISA KUSUMAS TUTI
-        <br>
-        &
-        <br>
+        <span>&amp;</span>
         DEFA GAFARUDDIN PUTRA
       </p>
 
-      <button id="openBtn" class="button">
+      <p class="welcome-date reveal">
+        11 · 07 · 2027
+      </p>
+
+      <button id="openBtn" class="button reveal">
         Open Invitation
       </button>
 
     </div>
+
   </section>
 
 
@@ -53,26 +63,36 @@
     <!-- HERO -->
     <section class="hero">
 
-      <p class="eyebrow">
-        THE WEDDING OF
-      </p>
+      <div class="hero-glow"></div>
 
-      <h1>
-        Anisa <span>&amp;</span> Defa
-      </h1>
+      <div class="hero-inner reveal">
 
-      <p class="date">
-        11 JULY 2027
-      </p>
+        <p class="eyebrow">
+          THE WEDDING OF
+        </p>
+
+        <h1>
+          Anisa <i>&amp;</i> Defa
+        </h1>
+
+        <p class="hero-date">
+          11 JULY 2027
+        </p>
+
+        <div class="ornament">
+          ✦
+        </div>
+
+      </div>
 
     </section>
 
 
     <!-- COUNTDOWN -->
-    <section class="countdown-section">
+    <section class="countdown-section reveal">
 
       <p class="eyebrow">
-        COUNTING THE DAYS
+        UNTIL WE SAY I DO
       </p>
 
       <div class="countdown">
@@ -103,129 +123,243 @@
 
 
     <!-- OUR STORY -->
-    <section class="section story">
+    <section class="section story-section">
 
-      <p class="eyebrow">
-        OUR STORY
-      </p>
+      <div class="section-heading reveal">
 
-      <h2>
-        From a chance meeting
-        <br>
-        to forever.
-      </h2>
-
-      <div class="story-text">
-
-        <p>
-          We met once,
-          <br>
-          then life carried us in different directions.
+        <p class="eyebrow">
+          OUR STORY
         </p>
 
-        <p>
-          For a while, we continued on separate paths,
+        <h2>
+          A second chance,
           <br>
-          never knowing that our story was not yet over.
+          <i>turned into forever.</i>
+        </h2>
+
+        <p class="section-intro">
+          A story of distance, patience, and choosing each other.
         </p>
 
-        <p>
-          Until one unexpected call
-          <br>
-          brought us back to each other.
-        </p>
+      </div>
 
-        <p>
-          From that moment,
-          <br>
-          we began to rediscover the connection
-          <br>
-          we had once shared.
-        </p>
 
-        <p>
-          For ten months,
-          <br>
-          we loved across the distance—
-          <br>
-          through miles, silence, and longing.
-        </p>
+      <div class="story-layout reveal">
 
-        <p>
-          We learned to cherish every conversation,
-          <br>
-          every message, every call,
-          <br>
-          and every moment we were able to share.
-        </p>
+        <!-- STORY NAVIGATION -->
 
-        <p>
-          There were days when the distance felt difficult,
-          <br>
-          when we wished we could simply be together,
-          <br>
-          but every mile only made our hearts
-          <br>
-          draw closer.
-        </p>
+        <div
+          class="story-nav"
+          role="tablist"
+          aria-label="Our story chapters"
+        >
 
-        <p>
-          Through patience, trust, and understanding,
-          <br>
-          we continued to choose one another,
-          <br>
-          even when being apart was not easy.
-        </p>
+          <button
+            class="story-tab active"
+            data-story="0"
+          >
+            01
+            <span>The Meeting</span>
+          </button>
 
-        <p>
-          What began as a chance meeting
-          <br>
-          became a second chance.
-        </p>
+          <button
+            class="story-tab"
+            data-story="1"
+          >
+            02
+            <span>Separate Paths</span>
+          </button>
 
-        <p>
-          And that second chance
-          <br>
-          slowly grew into a love
-          <br>
-          we could no longer imagine living without.
-        </p>
+          <button
+            class="story-tab"
+            data-story="2"
+          >
+            03
+            <span>The Call</span>
+          </button>
 
-        <p>
-          Over time, we realized
-          <br>
-          that love is not only found in the moments we share,
-          <br>
-          but also in the commitment to stay,
-          <br>
-          to understand, and to keep choosing each other.
-        </p>
+          <button
+            class="story-tab"
+            data-story="3"
+          >
+            04
+            <span>Ten Months</span>
+          </button>
 
-        <p>
-          Now, after every distance, every waiting,
-          <br>
-          and every moment that brought us closer,
-          <br>
-          we are ready to begin the next chapter together.
-        </p>
+          <button
+            class="story-tab"
+            data-story="4"
+          >
+            05
+            <span>Choosing Us</span>
+          </button>
 
-        <p>
-          Today, we choose each other—
-          <br>
-          with grateful hearts,
-          <br>
-          with endless love,
-          <br>
-          and with the promise to walk side by side
-          <br>
-          through all that life may bring.
-        </p>
+          <button
+            class="story-tab"
+            data-story="5"
+          >
+            06
+            <span>Second Chance</span>
+          </button>
 
-        <p>
-          Today, tomorrow,
-          <br>
-          and for all the days to come.
-        </p>
+          <button
+            class="story-tab"
+            data-story="6"
+          >
+            07
+            <span>Our Promise</span>
+          </button>
+
+        </div>
+
+
+        <!-- STORY CONTENT -->
+
+        <div class="story-panel-wrap">
+
+          <article
+            class="story-panel active"
+            data-panel="0"
+          >
+            <span class="story-number">
+              01
+            </span>
+
+            <h3>
+              The Meeting
+            </h3>
+
+            <p>
+              We met once,
+              then life carried us in different directions.
+            </p>
+          </article>
+
+
+          <article
+            class="story-panel"
+            data-panel="1"
+          >
+            <span class="story-number">
+              02
+            </span>
+
+            <h3>
+              Separate Paths
+            </h3>
+
+            <p>
+              For a while, we continued on separate paths,
+              never knowing that our story was not yet over.
+            </p>
+          </article>
+
+
+          <article
+            class="story-panel"
+            data-panel="2"
+          >
+            <span class="story-number">
+              03
+            </span>
+
+            <h3>
+              The Call
+            </h3>
+
+            <p>
+              Until one unexpected call brought us back to each other.
+              From that moment, we began to rediscover the connection
+              we had once shared.
+            </p>
+          </article>
+
+
+          <article
+            class="story-panel"
+            data-panel="3"
+          >
+            <span class="story-number">
+              04
+            </span>
+
+            <h3>
+              Ten Months Apart
+            </h3>
+
+            <p>
+              For ten months, we loved across the distance—
+              through miles, silence, and longing.
+              We learned to cherish every conversation,
+              every message, every call,
+              and every moment we were able to share.
+            </p>
+          </article>
+
+
+          <article
+            class="story-panel"
+            data-panel="4"
+          >
+            <span class="story-number">
+              05
+            </span>
+
+            <h3>
+              Choosing Us
+            </h3>
+
+            <p>
+              There were days when the distance felt difficult,
+              when we wished we could simply be together,
+              but every mile only made our hearts draw closer.
+              Through patience, trust, and understanding,
+              we continued to choose one another.
+            </p>
+          </article>
+
+
+          <article
+            class="story-panel"
+            data-panel="5"
+          >
+            <span class="story-number">
+              06
+            </span>
+
+            <h3>
+              A Second Chance
+            </h3>
+
+            <p>
+              What began as a chance meeting became a second chance.
+              And that second chance slowly grew into a love
+              we could no longer imagine living without.
+            </p>
+          </article>
+
+
+          <article
+            class="story-panel"
+            data-panel="6"
+          >
+            <span class="story-number">
+              07
+            </span>
+
+            <h3>
+              Our Promise
+            </h3>
+
+            <p>
+              Today, we choose each other—with grateful hearts,
+              with endless love, and with the promise to walk
+              side by side through all that life may bring.
+              Today, tomorrow, and for all the days to come.
+            </p>
+          </article>
+
+        </div>
 
       </div>
 
@@ -233,33 +367,42 @@
 
 
     <!-- WEDDING DETAILS -->
-    <section class="section details">
+    <section class="section details-section">
 
-      <p class="eyebrow">
-        THE DAY
-      </p>
+      <div class="section-heading reveal">
 
-      <h2>
-        Wedding Details
-      </h2>
+        <p class="eyebrow">
+          THE DAY
+        </p>
 
-      <div class="details-grid">
+        <h2>
+          Wedding Details
+        </h2>
+
+      </div>
+
+
+      <div class="details-grid reveal">
 
         <div class="detail-card">
 
-          <h3>
-            CEREMONY
-          </h3>
+          <span class="detail-icon">
+            I
+          </span>
 
-          <p>
-            11 JULY 2027
+          <p class="eyebrow">
+            CEREMONY
           </p>
+
+          <h3>
+            11 JULY 2027
+          </h3>
 
           <p>
             9:00 AM – 3:00 PM
           </p>
 
-          <p>
+          <p class="muted">
             VENUE TO BE ANNOUNCED
           </p>
 
@@ -268,15 +411,19 @@
 
         <div class="detail-card">
 
-          <h3>
-            RECEPTION
-          </h3>
+          <span class="detail-icon">
+            II
+          </span>
 
-          <p>
-            TIME TO BE ANNOUNCED
+          <p class="eyebrow">
+            RECEPTION
           </p>
 
-          <p>
+          <h3>
+            TIME TO BE ANNOUNCED
+          </h3>
+
+          <p class="muted">
             VENUE TO BE ANNOUNCED
           </p>
 
@@ -288,17 +435,22 @@
 
 
     <!-- GALLERY -->
-    <section class="section gallery">
+    <section class="section gallery-section">
 
-      <p class="eyebrow">
-        A FEW MOMENTS
-      </p>
+      <div class="section-heading reveal">
 
-      <h2>
-        Gallery
-      </h2>
+        <p class="eyebrow">
+          A FEW MOMENTS
+        </p>
 
-      <div class="gallery-grid">
+        <h2>
+          Gallery
+        </h2>
+
+      </div>
+
+
+      <div class="gallery-grid reveal">
 
         <img
           src="images/photo-1.svg"
@@ -326,17 +478,25 @@
 
 
     <!-- RSVP -->
-    <section class="section rsvp">
+    <section class="section rsvp-section">
 
-      <p class="eyebrow">
-        KINDLY RESPOND
-      </p>
+      <div class="section-heading reveal">
 
-      <h2>
-        RSVP
-      </h2>
+        <p class="eyebrow">
+          KINDLY RESPOND
+        </p>
 
-      <form id="rsvpForm">
+        <h2>
+          RSVP
+        </h2>
+
+      </div>
+
+
+      <form
+        id="rsvpForm"
+        class="rsvp-form reveal"
+      >
 
         <input
           type="text"
@@ -369,9 +529,10 @@
 
       </form>
 
+
       <p
         id="rsvpMessage"
-        class="hidden"
+        class="hidden rsvp-message"
       >
         Thank you for your response.
       </p>
@@ -380,125 +541,133 @@
 
 
     <!-- WEDDING GIFT -->
-    <section class="section extras">
+    <section class="section gift-section">
 
-      <div class="extra-card">
+      <div class="gift-card reveal">
 
-        <p class="eyebrow">
-          WEDDING GIFT
-        </p>
+        <div class="section-heading">
 
-        <h2>
-          With Love
-        </h2>
-
-        <p>
-          Your presence is our greatest gift.
-        </p>
-
-        <p>
-          If you would like to send a gift,
-          you may use any of the accounts below.
-        </p>
-
-
-        <!-- DEFA BCA -->
-        <div class="gift-account">
-
-          <p>
-            DEFA GAFARUDDIN PUTRA
+          <p class="eyebrow">
+            WEDDING GIFT
           </p>
 
-          <p>
-            BCA
-          </p>
+          <h2>
+            With Love
+          </h2>
 
-          <p class="account-number">
-            8890949801
+          <p class="section-intro">
+            Your presence is our greatest gift.
+            If you would like to send a gift,
+            you may use any of the accounts below.
           </p>
-
-          <button
-            class="copy-account"
-            data-account="8890949801"
-          >
-            Copy Account Number
-          </button>
 
         </div>
 
 
-        <!-- ANISA BCA -->
-        <div class="gift-account">
+        <div class="gift-grid">
 
-          <p>
-            ANISA KUSUMAS TUTI
-          </p>
+          <div class="gift-account">
 
-          <p>
-            BCA
-          </p>
+            <p class="account-owner">
+              DEFA GAFARUDDIN PUTRA
+            </p>
 
-          <p class="account-number">
-            0462954156
-          </p>
+            <p class="account-bank">
+              BCA
+            </p>
 
-          <button
-            class="copy-account"
-            data-account="0462954156"
-          >
-            Copy Account Number
-          </button>
+            <p class="account-number">
+              8890949801
+            </p>
 
-        </div>
+            <button
+              class="copy-account"
+              data-account="8890949801"
+            >
+              Copy Account Number
+            </button>
+
+          </div>
 
 
-        <!-- ANISA MANDIRI -->
-        <div class="gift-account">
+          <div class="gift-account">
 
-          <p>
-            ANISA KUSUMAS TUTI
-          </p>
+            <p class="account-owner">
+              ANISA KUSUMAS TUTI
+            </p>
 
-          <p>
-            MANDIRI
-          </p>
+            <p class="account-bank">
+              BCA
+            </p>
 
-          <p class="account-number">
-            1800015128921
-          </p>
+            <p class="account-number">
+              0462954156
+            </p>
 
-          <button
-            class="copy-account"
-            data-account="1800015128921"
-          >
-            Copy Account Number
-          </button>
+            <button
+              class="copy-account"
+              data-account="0462954156"
+            >
+              Copy Account Number
+            </button>
+
+          </div>
+
+
+          <div class="gift-account">
+
+            <p class="account-owner">
+              ANISA KUSUMAS TUTI
+            </p>
+
+            <p class="account-bank">
+              MANDIRI
+            </p>
+
+            <p class="account-number">
+              1800015128921
+            </p>
+
+            <button
+              class="copy-account"
+              data-account="1800015128921"
+            >
+              Copy Account Number
+            </button>
+
+          </div>
 
         </div>
 
       </div>
 
+    </section>
 
-      <!-- CLOSING -->
-      <div class="extra-card">
+
+    <!-- CLOSING -->
+    <section class="closing reveal">
+
+      <div class="closing-inner">
 
         <p class="eyebrow">
           WITH LOVE
         </p>
 
         <h2>
-          Anisa &amp; Defa
+          Anisa <i>&amp;</i> Defa
         </h2>
+
+        <div class="ornament">
+          ✦
+        </div>
 
         <p>
           Thank you for being part of our story.
         </p>
 
-        <p>
-          ANISA &amp; DEFA
-          <br>
+        <span>
           11 · 07 · 2027
-        </p>
+        </span>
 
       </div>
 
@@ -507,22 +676,20 @@
   </main>
 
 
-  <!-- BACKGROUND MUSIC -->
+  <!-- MUSIC -->
   <audio
     id="bgMusic"
     loop
     preload="metadata"
   >
-
     <source
       src="audio/wedding-music.mp3"
       type="audio/mpeg"
     >
-
   </audio>
 
 
-  <!-- MUSIC CONTROL -->
+  <!-- MUSIC BUTTON -->
   <button
     id="musicBtn"
     class="music-button hidden"
