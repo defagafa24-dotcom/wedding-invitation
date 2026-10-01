@@ -628,279 +628,637 @@ h3 {
 
 }
 
-
 /* =========================
-   CINEMATIC STORY BACKGROUND
+   LIVING STORYBOOK BACKGROUND
 ========================= */
 
 .story-background {
   position: absolute;
-  inset: -80px;
-  pointer-events: none;
+  inset: -100px;
   overflow: hidden;
-  z-index: 0;
-  background:
-    radial-gradient(
-      circle at 15% 20%,
-      rgba(199,166,107,.13),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 85% 70%,
-      rgba(169,130,134,.12),
-      transparent 30%
-    );
-}
-
-
-/* SOFT MOVING LIGHT */
-
-.story-background::before {
-  content: "";
-  position: absolute;
-  width: 520px;
-  height: 520px;
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(199,166,107,.20) 0%,
-      rgba(199,166,107,.08) 28%,
-      transparent 70%
-    );
-
-  top: -180px;
-  left: -180px;
-
-  filter: blur(12px);
-
-  animation:
-    storyLightOne
-    16s
-    ease-in-out
-    infinite;
-}
-
-
-/* SECOND MOVING LIGHT */
-
-.story-background::after {
-  content: "";
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(169,130,134,.17) 0%,
-      rgba(169,130,134,.06) 30%,
-      transparent 72%
-    );
-
-  right: -240px;
-  bottom: -220px;
-
-  filter: blur(15px);
-
-  animation:
-    storyLightTwo
-    20s
-    ease-in-out
-    infinite;
-}
-
-
-/* FLOATING GOLD ORB */
-
-.story-orb {
-  position: absolute;
-  border-radius: 50%;
   pointer-events: none;
-  mix-blend-mode: multiply;
+  z-index: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,252,244,.9),
+      rgba(245,240,231,.96)
+    );
 }
 
 
-/* GOLD ORB */
+/* =========================
+   SUNLIGHT
+========================= */
 
-.orb-one {
-  width: 260px;
-  height: 260px;
+.scene-sun {
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  border-radius: 50%;
+
+  right: 8%;
+  top: -180px;
 
   background:
     radial-gradient(
       circle,
-      rgba(199,166,107,.20),
-      rgba(199,166,107,.06) 45%,
+      rgba(226,194,132,.28),
+      rgba(226,194,132,.08) 38%,
       transparent 72%
     );
 
-  top: 8%;
-  left: -90px;
-
-  filter: blur(5px);
+  filter: blur(8px);
 
   animation:
-    orbFloatOne
-    13s
+    sunBreath
+    9s
     ease-in-out
     infinite;
 }
 
 
-/* ROSE ORB */
-
-.orb-two {
-  width: 340px;
-  height: 340px;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(169,130,134,.17),
-      rgba(169,130,134,.05) 45%,
-      transparent 72%
-    );
-
-  right: -150px;
-  top: 30%;
-
-  filter: blur(7px);
-
-  animation:
-    orbFloatTwo
-    17s
-    ease-in-out
-    infinite;
-}
-
-
-/* SMALL GOLD ORB */
-
-.orb-three {
-  width: 220px;
-  height: 220px;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(199,166,107,.13),
-      transparent 70%
-    );
-
-  bottom: -70px;
-  left: 42%;
-
-  filter: blur(6px);
-
-  animation:
-    orbFloatThree
-    19s
-    ease-in-out
-    infinite;
-}
-
-
-/* MOVING LIGHT KEYFRAMES */
-
-@keyframes storyLightOne {
+@keyframes sunBreath {
 
   0%,
   100% {
-    transform:
-      translate3d(0,0,0)
-      scale(1);
-
+    transform: scale(1);
     opacity: .65;
   }
 
   50% {
-    transform:
-      translate3d(260px,120px,0)
-      scale(1.25);
-
-    opacity: 1;
+    transform: scale(1.15);
+    opacity: .95;
   }
 }
 
 
-@keyframes storyLightTwo {
+/* =========================
+   CLOUDS
+========================= */
+
+.scene-cloud {
+  position: absolute;
+
+  width: 180px;
+  height: 55px;
+
+  border-radius: 50px;
+
+  background:
+    rgba(255,255,255,.42);
+
+  filter: blur(1px);
+
+  opacity: .65;
+}
+
+
+.scene-cloud::before,
+.scene-cloud::after {
+  content: "";
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,255,255,.42);
+}
+
+
+.scene-cloud::before {
+  width: 75px;
+  height: 75px;
+
+  left: 30px;
+  bottom: 15px;
+}
+
+
+.scene-cloud::after {
+  width: 95px;
+  height: 95px;
+
+  right: 28px;
+  bottom: 5px;
+}
+
+
+.cloud-one {
+  top: 18%;
+  left: -220px;
+
+  animation:
+    cloudMoveOne
+    38s
+    linear
+    infinite;
+}
+
+
+.cloud-two {
+  top: 40%;
+  left: -300px;
+
+  transform: scale(.7);
+
+  opacity: .4;
+
+  animation:
+    cloudMoveTwo
+    52s
+    linear
+    infinite;
+}
+
+
+.cloud-three {
+  top: 70%;
+  left: -250px;
+
+  transform: scale(.5);
+
+  opacity: .3;
+
+  animation:
+    cloudMoveThree
+    65s
+    linear
+    infinite;
+}
+
+
+@keyframes cloudMoveOne {
+
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(1450px);
+  }
+}
+
+
+@keyframes cloudMoveTwo {
+
+  from {
+    transform: translateX(0) scale(.7);
+  }
+
+  to {
+    transform: translateX(1550px) scale(.7);
+  }
+}
+
+
+@keyframes cloudMoveThree {
+
+  from {
+    transform: translateX(0) scale(.5);
+  }
+
+  to {
+    transform: translateX(1600px) scale(.5);
+  }
+}
+
+
+/* =========================
+   DISTANT HILLS
+========================= */
+
+.scene-hill {
+  position: absolute;
+
+  bottom: -160px;
+
+  width: 700px;
+  height: 300px;
+
+  border-radius: 50% 50% 0 0;
+
+  background:
+    rgba(169,130,134,.055);
+
+  filter: blur(2px);
+}
+
+
+.hill-one {
+  left: -300px;
+
+  transform:
+    rotate(-5deg);
+}
+
+
+.hill-two {
+  right: -350px;
+
+  transform:
+    rotate(5deg);
+
+  background:
+    rgba(199,166,107,.06);
+}
+
+
+/* =========================
+   TREES
+========================= */
+
+.scene-tree {
+  position: absolute;
+
+  bottom: -30px;
+
+  width: 240px;
+  height: 430px;
+
+  opacity: .16;
+
+  transform-origin: bottom center;
+}
+
+
+.tree-left {
+  left: -80px;
+
+  animation:
+    treeSway
+    6s
+    ease-in-out
+    infinite;
+}
+
+
+.tree-right {
+  right: -80px;
+
+  transform:
+    scaleX(-1);
+
+  animation:
+    treeSwayRight
+    7s
+    ease-in-out
+    infinite;
+}
+
+
+.tree-trunk {
+  position: absolute;
+
+  bottom: 0;
+  left: 110px;
+
+  width: 22px;
+  height: 300px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(75,62,51,.35),
+      rgba(115,91,67,.2),
+      rgba(75,62,51,.3)
+    );
+
+  transform:
+    rotate(5deg);
+}
+
+
+.tree-trunk::before,
+.tree-trunk::after {
+  content: "";
+
+  position: absolute;
+
+  width: 90px;
+  height: 12px;
+
+  background:
+    rgba(75,62,51,.25);
+
+  border-radius: 50px;
+}
+
+
+.tree-trunk::before {
+  top: 70px;
+  left: -65px;
+
+  transform:
+    rotate(-25deg);
+}
+
+
+.tree-trunk::after {
+  top: 110px;
+  right: -70px;
+
+  transform:
+    rotate(25deg);
+}
+
+
+/* Tree canopy */
+
+.tree-leaves {
+  position: absolute;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(169,130,134,.25),
+      rgba(169,130,134,.08) 60%,
+      transparent 75%
+    );
+
+  filter: blur(2px);
+}
+
+
+.leaf-a {
+  width: 170px;
+  height: 150px;
+
+  top: 30px;
+  left: 30px;
+}
+
+
+.leaf-b {
+  width: 150px;
+  height: 140px;
+
+  top: 75px;
+  left: 85px;
+}
+
+
+.leaf-c {
+  width: 135px;
+  height: 130px;
+
+  top: 115px;
+  left: -5px;
+}
+
+
+.leaf-d {
+  width: 120px;
+  height: 110px;
+
+  top: 155px;
+  left: 75px;
+}
+
+
+@keyframes treeSway {
 
   0%,
   100% {
     transform:
-      translate3d(0,0,0)
-      scale(1);
+      rotate(0deg);
+  }
 
+  50% {
+    transform:
+      rotate(2deg);
+  }
+}
+
+
+@keyframes treeSwayRight {
+
+  0%,
+  100% {
+    transform:
+      scaleX(-1)
+      rotate(0deg);
+  }
+
+  50% {
+    transform:
+      scaleX(-1)
+      rotate(-2deg);
+  }
+}
+
+
+/* =========================
+   FLYING BIRDS
+========================= */
+
+.flying-bird {
+  position: absolute;
+
+  width: 55px;
+
+  color:
+    rgba(52,59,62,.24);
+
+  opacity: 0;
+
+  animation:
+    birdFlight
+    18s
+    linear
+    infinite;
+}
+
+
+.bird-one {
+  top: 20%;
+  left: -100px;
+
+  animation-delay: 2s;
+}
+
+
+.bird-two {
+  top: 38%;
+  left: -150px;
+
+  width: 42px;
+
+  animation-delay: 8s;
+}
+
+
+.bird-three {
+  top: 58%;
+  left: -120px;
+
+  width: 32px;
+
+  animation-delay: 13s;
+}
+
+
+@keyframes birdFlight {
+
+  0% {
+    transform:
+      translateX(0)
+      translateY(20px)
+      scale(.8);
+
+    opacity: 0;
+  }
+
+  10% {
     opacity: .55;
   }
 
-  50% {
+  45% {
     transform:
-      translate3d(-220px,-150px,0)
-      scale(1.2);
+      translateX(550px)
+      translateY(-35px)
+      scale(1);
 
-    opacity: .9;
+    opacity: .45;
   }
-}
 
+  75% {
+    transform:
+      translateX(1050px)
+      translateY(20px)
+      scale(.9);
 
-/* ORB MOVEMENT */
+    opacity: .3;
+  }
 
-@keyframes orbFloatOne {
-
-  0%,
   100% {
     transform:
-      translate3d(0,0,0)
-      scale(1);
-  }
+      translateX(1550px)
+      translateY(-25px)
+      scale(.75);
 
-  50% {
-    transform:
-      translate3d(100px,55px,0)
-      scale(1.18);
+    opacity: 0;
   }
 }
 
 
-@keyframes orbFloatTwo {
+/* =========================
+   FLOATING LEAVES
+========================= */
 
-  0%,
+.scene-leaf {
+  position: absolute;
+
+  color:
+    rgba(169,130,134,.28);
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 28px;
+
+  opacity: 0;
+
+  animation:
+    leafFlight
+    12s
+    ease-in-out
+    infinite;
+}
+
+
+.leaf-one {
+  left: 15%;
+  top: 20%;
+
+  animation-delay: 1s;
+}
+
+
+.leaf-two {
+  left: 35%;
+  top: 75%;
+
+  animation-delay: 4s;
+}
+
+
+.leaf-three {
+  left: 58%;
+  top: 30%;
+
+  animation-delay: 7s;
+}
+
+
+.leaf-four {
+  left: 75%;
+  top: 65%;
+
+  animation-delay: 2s;
+}
+
+
+.leaf-five {
+  left: 88%;
+  top: 25%;
+
+  animation-delay: 9s;
+}
+
+
+@keyframes leafFlight {
+
+  0% {
+    transform:
+      translate3d(0,0,0)
+      rotate(0deg);
+
+    opacity: 0;
+  }
+
+  15% {
+    opacity: .5;
+  }
+
+  50% {
+    transform:
+      translate3d(70px,-45px,0)
+      rotate(120deg);
+
+    opacity: .35;
+  }
+
+  80% {
+    transform:
+      translate3d(-30px,-100px,0)
+      rotate(240deg);
+
+    opacity: .2;
+  }
+
   100% {
     transform:
-      translate3d(0,0,0)
-      scale(1);
-  }
+      translate3d(90px,-150px,0)
+      rotate(360deg);
 
-  50% {
-    transform:
-      translate3d(-100px,-65px,0)
-      scale(1.16);
+    opacity: 0;
   }
 }
 
 
-@keyframes orbFloatThree {
-
-  0%,
-  100% {
-    transform:
-      translate3d(0,0,0)
-      scale(1);
-  }
-
-  50% {
-    transform:
-      translate3d(-70px,-90px,0)
-      scale(1.15);
-  }
-}
-
-
-/* FLOATING PARTICLES */
+/* =========================
+   STORY PARTICLES
+========================= */
 
 .story-particle {
   position: absolute;
@@ -913,11 +1271,11 @@ h3 {
 
   font-size: 15px;
 
-  opacity: .35;
+  opacity: .3;
 
   text-shadow:
     0 0 12px
-    rgba(199,166,107,.45);
+    rgba(199,166,107,.4);
 
   animation:
     particleFloat
@@ -930,16 +1288,12 @@ h3 {
 .particle-one {
   top: 14%;
   left: 24%;
-
-  animation-delay: 0s;
 }
 
 
 .particle-two {
   top: 62%;
   left: 13%;
-
-  font-size: 22px;
 
   animation-delay: 1.5s;
 }
@@ -949,8 +1303,6 @@ h3 {
   top: 19%;
   right: 22%;
 
-  font-size: 12px;
-
   animation-delay: 3s;
 }
 
@@ -958,8 +1310,6 @@ h3 {
 .particle-four {
   bottom: 17%;
   right: 13%;
-
-  font-size: 20px;
 
   animation-delay: 4.5s;
 }
@@ -970,7 +1320,7 @@ h3 {
   0%,
   100% {
     transform:
-      translate3d(0,0,0)
+      translateY(0)
       rotate(0deg);
 
     opacity: .15;
@@ -978,241 +1328,12 @@ h3 {
 
   50% {
     transform:
-      translate3d(0,-25px,0)
-      rotate(25deg);
+      translateY(-22px)
+      rotate(20deg);
 
     opacity: .55;
   }
 }
-
-
-/* SUBTLE SHIMMER */
-
-.story-layout {
-  position: relative;
-  overflow: hidden;
-}
-
-
-.story-layout::before {
-  content: "";
-
-  position: absolute;
-
-  width: 180px;
-  height: 100%;
-
-  top: 0;
-  left: -220px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.18),
-      transparent
-    );
-
-  transform: skewX(-15deg);
-
-  animation:
-    storyShimmer
-    9s
-    ease-in-out
-    infinite;
-
-  pointer-events: none;
-
-  z-index: 5;
-}
-
-
-@keyframes storyShimmer {
-
-  0% {
-    left: -220px;
-  }
-
-  35%,
-  100% {
-    left: 120%;
-  }
-}
-
-
-/* KEEP STORY CONTENT ABOVE THE ANIMATION */
-
-.story-section
-.section-heading,
-.story-layout {
-  position: relative;
-  z-index: 2;
-}
-
-@keyframes orbFloatOne {
-
-  0%,
-  100% {
-
-    transform:
-      translate(0,0)
-      scale(1);
-
-  }
-
-  50% {
-
-    transform:
-      translate(80px,45px)
-      scale(1.18);
-
-  }
-
-}
-
-
-@keyframes orbFloatTwo {
-
-  0%,
-  100% {
-
-    transform:
-      translate(0,0)
-      scale(1);
-
-  }
-
-  50% {
-
-    transform:
-      translate(-70px,-45px)
-      scale(1.15);
-
-  }
-
-}
-
-
-@keyframes orbFloatThree {
-
-  0%,
-  100% {
-
-    transform:
-      translate(0,0);
-
-  }
-
-  50% {
-
-    transform:
-      translate(-60px,-70px);
-
-  }
-
-}
-
-
-.story-particle {
-
-  position: absolute;
-
-  color: var(--gold);
-
-  opacity: .3;
-
-  font-family:
-    "Cormorant Garamond",
-    serif;
-
-}
-
-
-.particle-one {
-
-  top: 15%;
-
-  left: 24%;
-
-  animation:
-    particleFloat
-    8s
-    ease-in-out
-    infinite;
-
-}
-
-
-.particle-two {
-
-  top: 65%;
-
-  left: 15%;
-
-  animation:
-    particleFloat
-    11s
-    ease-in-out
-    infinite
-    .5s;
-
-}
-
-
-.particle-three {
-
-  right: 22%;
-
-  top: 18%;
-
-  animation:
-    particleFloat
-    10s
-    ease-in-out
-    infinite
-    1s;
-
-}
-
-
-.particle-four {
-
-  right: 14%;
-
-  bottom: 18%;
-
-  animation:
-    particleFloat
-    9s
-    ease-in-out
-    infinite
-    1.5s;
-
-}
-
-
-@keyframes particleFloat {
-
-  0%,
-  100% {
-
-    transform:
-      translateY(0)
-      rotate(0deg);
-
-  }
-
-  50% {
-
-    transform:
-      translateY(-18px)
-      rotate(20deg);
-
-  }
-
-}
-
-
 /* STORY CONTENT */
 
 .story-section
