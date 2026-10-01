@@ -529,3 +529,53 @@ function revealVisible() {
     });
 
 }
+
+/* =========================================================
+   V3 — STORYBOOK PARALLAX + CHAPTER ATMOSPHERE
+========================================================= */
+
+const storySectionV3 = document.querySelector(".story-section");
+
+function setStoryChapterV3(target) {
+  if (!storySectionV3) return;
+  storySectionV3.dataset.chapter = target;
+}
+
+if (storySectionV3) {
+  storySectionV3.dataset.chapter =
+    document.querySelector(".story-tab.active")?.dataset.story || "0";
+
+  storyTabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      setStoryChapterV3(tab.dataset.story);
+    });
+  });
+
+  journeyDots.forEach(dot => {
+    dot.addEventListener("click", () => {
+      setStoryChapterV3(dot.dataset.journey);
+    });
+  });
+
+  let storyTicking = false;
+
+  window.addEventListener("scroll", () => {
+    if (storyTicking) return;
+
+    storyTicking = true;
+
+    requestAnimationFrame(() => {
+      const rect = storySectionV3.getBoundingClientRect();
+      const viewport = window.innerHeight || 1;
+      const distance = rect.top / viewport;
+      const parallax = Math.max(-32, Math.min(32, distance * -22));
+
+      storySectionV3.style.setProperty(
+        "--story-parallax",
+        parallax + "px"
+      );
+
+      storyTicking = false;
+    });
+  }, { passive: true });
+}
