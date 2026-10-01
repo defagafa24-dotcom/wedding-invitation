@@ -2837,3 +2837,440 @@ footer {
   }
 
 }
+/* =========================================================
+   V3 — ANIMATED LUXURY STORYBOOK
+   Keeps the existing navy / ivory / champagne / rose palette
+========================================================= */
+
+.story-section {
+  --story-parallax: 0px;
+  isolation: isolate;
+  min-height: 760px;
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.story-background {
+  inset: -180px -40px;
+  z-index: 0;
+  background:
+    radial-gradient(
+      circle at 72% 10%,
+      rgba(199,166,107,.20),
+      transparent 25%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(251,248,241,.96) 0%,
+      rgba(245,240,231,.88) 48%,
+      rgba(34,49,61,.13) 100%
+    );
+  transform: translate3d(0, var(--story-parallax), 0);
+  transition: background 1.4s ease;
+}
+
+.story-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .20;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(52,59,62,.035) 0,
+      rgba(52,59,62,.035) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.story-background::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  width: min(760px, 90%);
+  height: 230px;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 0 0;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(169,130,134,.16),
+      rgba(199,166,107,.06) 48%,
+      transparent 72%
+    );
+  filter: blur(10px);
+}
+
+/* TREES */
+
+.scene-tree {
+  opacity: .34;
+  filter: saturate(.72);
+}
+
+.scene-tree .tree-leaves {
+  background:
+    radial-gradient(
+      circle,
+      rgba(169,130,134,.38),
+      rgba(199,166,107,.12) 58%,
+      transparent 76%
+    );
+}
+
+.scene-tree .tree-trunk {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(52,59,62,.34),
+      rgba(115,91,67,.24),
+      rgba(52,59,62,.30)
+    );
+}
+
+/* CLOUDS */
+
+.scene-cloud {
+  opacity: .78;
+  background: rgba(255,255,255,.56);
+}
+
+.scene-cloud::before,
+.scene-cloud::after {
+  background: rgba(255,255,255,.56);
+}
+
+/* HILLS */
+
+.scene-hill {
+  background: rgba(169,130,134,.10);
+}
+
+.hill-two {
+  background: rgba(199,166,107,.11);
+}
+
+/* BIRDS */
+
+.flying-bird {
+  width: 82px;
+  color: rgba(52,59,62,.58);
+  filter: drop-shadow(
+    0 2px 3px rgba(52,59,62,.08)
+  );
+}
+
+/* FALLING / FLOATING LEAVES */
+
+.scene-leaf {
+  color: rgba(169,130,134,.42);
+  text-shadow:
+    0 2px 8px rgba(169,130,134,.12);
+}
+
+/* STORY SECTION DECORATIVE LINE */
+
+.story-section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 28px;
+  height: 1px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(199,166,107,.34),
+      transparent
+    );
+  z-index: 1;
+}
+
+/* MAIN STORY CARD */
+
+.story-layout {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(199,166,107,.42);
+  background: rgba(251,248,241,.48);
+
+  box-shadow:
+    0 30px 80px rgba(24,35,45,.10),
+    inset 0 0 0 1px rgba(255,255,255,.34);
+
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+/* TOP RIGHT SIGNATURE */
+
+.story-layout::before {
+  content: "ANISA  &  DEFA";
+  position: absolute;
+  top: 20px;
+  right: 26px;
+  z-index: 3;
+
+  color: rgba(199,166,107,.55);
+  font-size: 8px;
+  letter-spacing: .30em;
+}
+
+/* BOTTOM RIGHT DECORATION */
+
+.story-layout::after {
+  content: "✦";
+  position: absolute;
+  right: 24px;
+  bottom: 16px;
+  z-index: 3;
+
+  color: rgba(199,166,107,.45);
+  font-size: 14px;
+}
+
+/* STORY NAVIGATION */
+
+.story-nav {
+  background: rgba(24,35,45,.035);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.story-tab {
+  position: relative;
+  z-index: 4;
+}
+
+/* STORY CONTENT */
+
+.story-panel-wrap {
+  min-height: 520px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(251,248,241,.42),
+      rgba(245,240,231,.18)
+    );
+}
+
+.story-panel {
+  padding: 78px 78px 70px;
+}
+
+.story-panel h3 {
+  font-size: clamp(48px, 6vw, 72px);
+  line-height: .96;
+  max-width: 650px;
+  text-wrap: balance;
+}
+
+.story-panel p {
+  font-size: clamp(23px, 2.3vw, 30px);
+  max-width: 690px;
+}
+
+.story-number {
+  letter-spacing: .30em;
+}
+
+/* =========================================================
+   CHAPTER ATMOSPHERE
+========================================================= */
+
+.story-section[data-chapter="0"] .story-background {
+  background:
+    radial-gradient(
+      circle at 72% 10%,
+      rgba(199,166,107,.24),
+      transparent 27%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(251,248,241,.98),
+      rgba(245,240,231,.88)
+    );
+}
+
+.story-section[data-chapter="1"] .story-background {
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(169,130,134,.12),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(245,240,231,.97),
+      rgba(223,215,202,.90)
+    );
+}
+
+.story-section[data-chapter="2"] .story-background {
+  background:
+    radial-gradient(
+      circle at 78% 18%,
+      rgba(199,166,107,.25),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(251,248,241,.97),
+      rgba(232,224,211,.90)
+    );
+}
+
+.story-section[data-chapter="3"] .story-background {
+  background:
+    radial-gradient(
+      circle at 70% 16%,
+      rgba(169,130,134,.16),
+      transparent 25%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(223,215,202,.95),
+      rgba(24,35,45,.13)
+    );
+}
+
+.story-section[data-chapter="4"] .story-background {
+  background:
+    radial-gradient(
+      circle at 35% 12%,
+      rgba(199,166,107,.22),
+      transparent 27%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(251,248,241,.97),
+      rgba(230,222,208,.90)
+    );
+}
+
+.story-section[data-chapter="5"] .story-background {
+  background:
+    radial-gradient(
+      circle at 50% 16%,
+      rgba(169,130,134,.20),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(245,240,231,.98),
+      rgba(218,207,198,.90)
+    );
+}
+
+.story-section[data-chapter="6"] .story-background {
+  background:
+    radial-gradient(
+      circle at 50% 8%,
+      rgba(199,166,107,.30),
+      transparent 31%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(251,248,241,.99),
+      rgba(238,229,216,.92)
+    );
+}
+
+/* GPU OPTIMIZATION FOR ANIMATED ELEMENTS */
+
+.story-section .scene-tree,
+.story-section .scene-leaf,
+.story-section .flying-bird,
+.story-section .scene-cloud {
+  will-change: transform;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .story-section {
+    min-height: 860px;
+    padding: 85px 18px 90px;
+  }
+
+  .story-background {
+    inset: -100px -30px;
+  }
+
+  .story-layout {
+    background: rgba(251,248,241,.58);
+
+    box-shadow:
+      0 22px 55px rgba(24,35,45,.10),
+      inset 0 0 0 1px rgba(255,255,255,.35);
+  }
+
+  .story-layout::before {
+    top: 12px;
+    right: 15px;
+    font-size: 7px;
+  }
+
+  .story-nav {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .story-panel-wrap {
+    min-height: 520px;
+  }
+
+  .story-panel {
+    padding: 62px 28px 70px;
+  }
+
+  .story-panel h3 {
+    font-size: 47px;
+  }
+
+  .story-panel p {
+    font-size: 22px;
+    line-height: 1.58;
+  }
+
+  .scene-tree {
+    opacity: .28;
+  }
+
+  .flying-bird {
+    width: 68px;
+    color: rgba(52,59,62,.50);
+  }
+
+  .scene-cloud {
+    opacity: .62;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .story-background,
+  .story-section .scene-tree,
+  .story-section .scene-leaf,
+  .story-section .flying-bird,
+  .story-section .scene-cloud,
+  .scene-sun {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
