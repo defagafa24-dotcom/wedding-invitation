@@ -135,3 +135,125 @@ function revealVisible() {
     }
   });
 }
+
+
+// ==============================
+// STORY JOURNEY DOTS
+// ==============================
+const journeyDots = document.querySelectorAll(".journey-dot");
+
+journeyDots.forEach(dot => {
+  dot.addEventListener("click", () => {
+    const target = dot.dataset.journey;
+    storyTabs.forEach(tab => tab.classList.toggle("active", tab.dataset.story === target));
+    storyPanels.forEach(panel => panel.classList.toggle("active", panel.dataset.panel === target));
+    journeyDots.forEach(item => item.classList.toggle("active", item === dot));
+  });
+});
+
+// Keep story journey in sync when chapter tabs are tapped.
+storyTabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    const target = tab.dataset.story;
+    journeyDots.forEach(dot => dot.classList.toggle("active", dot.dataset.journey === target));
+  });
+});
+
+
+// ==============================
+// GALLERY LIGHTBOX
+// ==============================
+const galleryItems = document.querySelectorAll(".gallery-item");
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const lightboxClose = document.getElementById("lightboxClose");
+const lightboxPrev = document.getElementById("lightboxPrev");
+const lightboxNext = document.getElementById("lightboxNext");
+
+const galleryImages = Array.from(galleryItems).map(item => item.querySelector("img").src);
+let galleryIndex = 0;
+
+function showGalleryImage(index) {
+  galleryIndex = (index + galleryImages.length) % galleryImages.length;
+  lightboxImage.src = galleryImages[galleryIndex];
+  lightboxImage.alt = `Anisa and Defa — photo ${galleryIndex + 1}`;
+}
+
+function openGallery(index) {
+  showGalleryImage(index);
+  lightbox.classList.remove("hidden");
+  lightbox.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeGallery() {
+  lightbox.classList.add("hidden");
+  lightbox.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+galleryItems.forEach((item, index) => {
+  item.addEventListener("click", () => openGallery(index));
+});
+
+lightboxClose.addEventListener("click", closeGallery);
+lightboxPrev.addEventListener("click", () => showGalleryImage(galleryIndex - 1));
+lightboxNext.addEventListener("click", () => showGalleryImage(galleryIndex + 1));
+
+lightbox.addEventListener("click", event => {
+  if (event.target === lightbox) closeGallery();
+});
+
+document.addEventListener("keydown", event => {
+  if (lightbox.classList.contains("hidden")) return;
+  if (event.key === "Escape") closeGallery();
+  if (event.key === "ArrowLeft") showGalleryImage(galleryIndex - 1);
+  if (event.key === "ArrowRight") showGalleryImage(galleryIndex + 1);
+});
+
+
+// ==============================
+// SAVE THE DATE
+// ==============================
+const saveDateBtn = document.getElementById("saveDateBtn");
+
+saveDateBtn.addEventListener("click", () => {
+  const eventText = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Anisa and Defa//Wedding//EN",
+    "BEGIN:VEVENT",
+    "UID:anisa-defa-wedding-2027@example.com",
+    "DTSTAMP:20261002T000000Z",
+    "DTSTART:20270711T090000",
+    "DTEND:20270711T150000",
+    "SUMMARY:Anisa & Defa — Wedding",
+    "DESCRIPTION:Anisa Kusumas Tuti & Defa Gafaruddin Putra",
+    "END:VEVENT",
+    "END:VCALENDAR"
+  ].join("\r\n");
+
+  const blob = new Blob([eventText], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "Anisa-and-Defa-Wedding.ics";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+
+
+// ==============================
+// FINAL SURPRISE
+// ==============================
+const surpriseBtn = document.getElementById("surpriseBtn");
+const surpriseMessage = document.getElementById("surpriseMessage");
+
+surpriseBtn.addEventListener("click", () => {
+  const isHidden = surpriseMessage.classList.contains("hidden");
+  surpriseMessage.classList.toggle("hidden", !isHidden);
+  surpriseBtn.querySelector("span").textContent = isHidden ? "Our little promise" : "One last thing…";
+  surpriseBtn.querySelector("small").textContent = isHidden ? "Tap to close" : "Tap to reveal";
+});
