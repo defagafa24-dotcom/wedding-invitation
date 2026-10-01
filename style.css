@@ -629,113 +629,425 @@ h3 {
 }
 
 
-/* ANIMATED STORY BACKGROUND */
+/* =========================
+   CINEMATIC STORY BACKGROUND
+========================= */
 
 .story-background {
-
   position: absolute;
-
-  inset: 0;
-
+  inset: -80px;
   pointer-events: none;
-
   overflow: hidden;
-
   z-index: 0;
-
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(199,166,107,.13),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(169,130,134,.12),
+      transparent 30%
+    );
 }
 
 
-.story-orb {
+/* SOFT MOVING LIGHT */
 
+.story-background::before {
+  content: "";
   position: absolute;
-
+  width: 520px;
+  height: 520px;
   border-radius: 50%;
 
-  filter: blur(3px);
+  background:
+    radial-gradient(
+      circle,
+      rgba(199,166,107,.20) 0%,
+      rgba(199,166,107,.08) 28%,
+      transparent 70%
+    );
 
-  opacity: .22;
+  top: -180px;
+  left: -180px;
 
+  filter: blur(12px);
+
+  animation:
+    storyLightOne
+    16s
+    ease-in-out
+    infinite;
 }
 
 
+/* SECOND MOVING LIGHT */
+
+.story-background::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(169,130,134,.17) 0%,
+      rgba(169,130,134,.06) 30%,
+      transparent 72%
+    );
+
+  right: -240px;
+  bottom: -220px;
+
+  filter: blur(15px);
+
+  animation:
+    storyLightTwo
+    20s
+    ease-in-out
+    infinite;
+}
+
+
+/* FLOATING GOLD ORB */
+
+.story-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+
+/* GOLD ORB */
+
 .orb-one {
-
   width: 260px;
-
   height: 260px;
 
   background:
     radial-gradient(
       circle,
-      rgba(199,166,107,.55),
-      transparent 70%
+      rgba(199,166,107,.20),
+      rgba(199,166,107,.06) 45%,
+      transparent 72%
     );
 
-  top: 5%;
+  top: 8%;
+  left: -90px;
 
-  left: -100px;
+  filter: blur(5px);
 
   animation:
     orbFloatOne
-    12s
+    13s
     ease-in-out
     infinite;
-
 }
 
 
+/* ROSE ORB */
+
 .orb-two {
-
-  width: 330px;
-
-  height: 330px;
+  width: 340px;
+  height: 340px;
 
   background:
     radial-gradient(
       circle,
-      rgba(169,130,134,.42),
-      transparent 70%
+      rgba(169,130,134,.17),
+      rgba(169,130,134,.05) 45%,
+      transparent 72%
     );
 
-  right: -140px;
+  right: -150px;
+  top: 30%;
 
-  top: 35%;
+  filter: blur(7px);
 
   animation:
     orbFloatTwo
-    15s
+    17s
     ease-in-out
     infinite;
-
 }
 
 
+/* SMALL GOLD ORB */
+
 .orb-three {
-
   width: 220px;
-
   height: 220px;
 
   background:
     radial-gradient(
       circle,
-      rgba(199,166,107,.3),
+      rgba(199,166,107,.13),
       transparent 70%
     );
 
-  bottom: -80px;
+  bottom: -70px;
+  left: 42%;
 
-  left: 45%;
+  filter: blur(6px);
 
   animation:
     orbFloatThree
-    17s
+    19s
+    ease-in-out
+    infinite;
+}
+
+
+/* MOVING LIGHT KEYFRAMES */
+
+@keyframes storyLightOne {
+
+  0%,
+  100% {
+    transform:
+      translate3d(0,0,0)
+      scale(1);
+
+    opacity: .65;
+  }
+
+  50% {
+    transform:
+      translate3d(260px,120px,0)
+      scale(1.25);
+
+    opacity: 1;
+  }
+}
+
+
+@keyframes storyLightTwo {
+
+  0%,
+  100% {
+    transform:
+      translate3d(0,0,0)
+      scale(1);
+
+    opacity: .55;
+  }
+
+  50% {
+    transform:
+      translate3d(-220px,-150px,0)
+      scale(1.2);
+
+    opacity: .9;
+  }
+}
+
+
+/* ORB MOVEMENT */
+
+@keyframes orbFloatOne {
+
+  0%,
+  100% {
+    transform:
+      translate3d(0,0,0)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate3d(100px,55px,0)
+      scale(1.18);
+  }
+}
+
+
+@keyframes orbFloatTwo {
+
+  0%,
+  100% {
+    transform:
+      translate3d(0,0,0)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate3d(-100px,-65px,0)
+      scale(1.16);
+  }
+}
+
+
+@keyframes orbFloatThree {
+
+  0%,
+  100% {
+    transform:
+      translate3d(0,0,0)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate3d(-70px,-90px,0)
+      scale(1.15);
+  }
+}
+
+
+/* FLOATING PARTICLES */
+
+.story-particle {
+  position: absolute;
+
+  color: var(--gold);
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 15px;
+
+  opacity: .35;
+
+  text-shadow:
+    0 0 12px
+    rgba(199,166,107,.45);
+
+  animation:
+    particleFloat
+    7s
+    ease-in-out
+    infinite;
+}
+
+
+.particle-one {
+  top: 14%;
+  left: 24%;
+
+  animation-delay: 0s;
+}
+
+
+.particle-two {
+  top: 62%;
+  left: 13%;
+
+  font-size: 22px;
+
+  animation-delay: 1.5s;
+}
+
+
+.particle-three {
+  top: 19%;
+  right: 22%;
+
+  font-size: 12px;
+
+  animation-delay: 3s;
+}
+
+
+.particle-four {
+  bottom: 17%;
+  right: 13%;
+
+  font-size: 20px;
+
+  animation-delay: 4.5s;
+}
+
+
+@keyframes particleFloat {
+
+  0%,
+  100% {
+    transform:
+      translate3d(0,0,0)
+      rotate(0deg);
+
+    opacity: .15;
+  }
+
+  50% {
+    transform:
+      translate3d(0,-25px,0)
+      rotate(25deg);
+
+    opacity: .55;
+  }
+}
+
+
+/* SUBTLE SHIMMER */
+
+.story-layout {
+  position: relative;
+  overflow: hidden;
+}
+
+
+.story-layout::before {
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+  height: 100%;
+
+  top: 0;
+  left: -220px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.18),
+      transparent
+    );
+
+  transform: skewX(-15deg);
+
+  animation:
+    storyShimmer
+    9s
     ease-in-out
     infinite;
 
+  pointer-events: none;
+
+  z-index: 5;
 }
 
+
+@keyframes storyShimmer {
+
+  0% {
+    left: -220px;
+  }
+
+  35%,
+  100% {
+    left: 120%;
+  }
+}
+
+
+/* KEEP STORY CONTENT ABOVE THE ANIMATION */
+
+.story-section
+.section-heading,
+.story-layout {
+  position: relative;
+  z-index: 2;
+}
 
 @keyframes orbFloatOne {
 
