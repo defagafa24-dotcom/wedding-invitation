@@ -926,7 +926,41 @@ if (storySectionV3) {
         entries => {
 
           entries.forEach(entry => {
+/* =========================================================
+   CINEMATIC GIFT REVEAL
+========================================================= */
 
+const giftRevealBtn =
+  document.getElementById("giftRevealBtn");
+
+const giftReveal =
+  document.getElementById("giftReveal");
+
+if (giftRevealBtn && giftReveal) {
+
+  giftRevealBtn.addEventListener("click", () => {
+
+    giftReveal.classList.remove("hidden");
+
+    giftRevealBtn.blur();
+
+    setTimeout(() => {
+
+      const firstAccount =
+        giftReveal.querySelector(".gift-account-reveal");
+
+      if (firstAccount) {
+        firstAccount.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
+
+    }, 500);
+
+  });
+
+}
             if (
               entry.isIntersecting
             ) {
