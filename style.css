@@ -4934,3 +4934,332 @@ body {
   -webkit-text-fill-color: var(--gold-soft) !important;
   text-decoration: none !important;
 }
+/* =========================================================
+   PHONE STORYBOOK — PORTRAIT + LANDSCAPE
+   Horizontal split layout
+   ========================================================= */
+
+@media (max-width: 899px) {
+
+  .story-section {
+    position: relative !important;
+    width: 100% !important;
+    min-height: 100svh !important;
+    height: auto !important;
+    padding: 55px 12px 60px !important;
+    overflow: hidden !important;
+  }
+
+  .story-section .section-heading {
+    position: relative !important;
+    z-index: 5 !important;
+    margin-bottom: 28px !important;
+  }
+
+  /* MAIN HORIZONTAL STORYBOOK */
+  .story-layout {
+    position: relative !important;
+    z-index: 5 !important;
+
+    display: grid !important;
+    grid-template-columns: 96px minmax(0, 1fr) !important;
+
+    width: 100% !important;
+    max-width: 850px !important;
+
+    height: clamp(
+      500px,
+      calc(100svh - 155px),
+      700px
+    ) !important;
+
+    min-height: 0 !important;
+
+    margin: 0 auto !important;
+
+    overflow: hidden !important;
+
+    background: rgba(251, 248, 241, .78) !important;
+
+    border: 1px solid rgba(199, 166, 107, .42) !important;
+
+    box-shadow:
+      0 25px 70px rgba(24, 35, 45, .18),
+      inset 0 0 0 1px rgba(255,255,255,.28) !important;
+
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+
+
+  /* LEFT CHAPTER NAVIGATION */
+  .story-nav {
+    position: relative !important;
+    z-index: 10 !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    min-width: 0 !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    padding: 0 !important;
+
+    border-right: 1px solid var(--line) !important;
+    border-bottom: 0 !important;
+
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .story-nav::-webkit-scrollbar {
+    display: none !important;
+  }
+
+
+  /* CHAPTER BUTTONS */
+  .story-tab {
+    position: relative !important;
+
+    flex: 0 0 auto !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+
+    min-height: 76px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+
+    padding: 13px 9px !important;
+
+    text-align: center !important;
+
+    border: 0 !important;
+    border-bottom: 1px solid rgba(199,166,107,.16) !important;
+    border-right: 3px solid transparent !important;
+
+    background: transparent !important;
+
+    cursor: pointer !important;
+  }
+
+  .story-tab span {
+    display: block !important;
+
+    font-size: 12px !important;
+    line-height: 1.25 !important;
+
+    white-space: normal !important;
+  }
+
+  .story-tab small {
+    display: block !important;
+
+    margin-bottom: 5px !important;
+
+    font-size: 10px !important;
+    letter-spacing: .16em !important;
+  }
+
+  .story-tab.active {
+    border-right-color: var(--gold) !important;
+    border-bottom-color: rgba(199,166,107,.16) !important;
+
+    background:
+      linear-gradient(
+        90deg,
+        rgba(199,166,107,.08),
+        rgba(199,166,107,.18)
+      ) !important;
+  }
+
+
+  /* RIGHT STORY AREA */
+  .story-content {
+    position: relative !important;
+    z-index: 5 !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 100% !important;
+
+    min-height: 0 !important;
+
+    padding: 30px 24px !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    scrollbar-width: thin !important;
+  }
+
+
+  .story-panel-wrap {
+    width: 100% !important;
+    min-width: 0 !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+
+  .story-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+
+  /* CHAPTER TITLE */
+  .story-panel h3 {
+    margin: 0 0 18px !important;
+
+    font-size: clamp(
+      34px,
+      9vw,
+      52px
+    ) !important;
+
+    line-height: .98 !important;
+
+    text-wrap: balance !important;
+  }
+
+
+  /* STORY TEXT */
+  .story-panel p {
+    max-width: 100% !important;
+
+    margin: 0 !important;
+
+    font-size: clamp(
+      16px,
+      4.2vw,
+      21px
+    ) !important;
+
+    line-height: 1.55 !important;
+  }
+
+
+  /* SMALLER PHONE */
+  @media (max-width: 430px) {
+
+    .story-section {
+      padding-left: 9px !important;
+      padding-right: 9px !important;
+    }
+
+    .story-layout {
+      grid-template-columns: 88px minmax(0, 1fr) !important;
+
+      height: clamp(
+        500px,
+        calc(100svh - 145px),
+        680px
+      ) !important;
+    }
+
+    .story-tab {
+      min-height: 72px !important;
+      padding: 11px 7px !important;
+    }
+
+    .story-tab span {
+      font-size: 11px !important;
+    }
+
+    .story-tab small {
+      font-size: 9px !important;
+    }
+
+    .story-content {
+      padding: 26px 18px !important;
+    }
+
+    .story-panel h3 {
+      font-size: clamp(
+        31px,
+        9vw,
+        44px
+      ) !important;
+    }
+
+    .story-panel p {
+      font-size: 16px !important;
+      line-height: 1.5 !important;
+    }
+  }
+
+
+  /* PHONE LANDSCAPE */
+  @media (orientation: landscape) {
+
+    .story-section {
+      min-height: 100svh !important;
+      padding: 25px 16px 30px !important;
+    }
+
+    .story-section .section-heading {
+      margin-bottom: 18px !important;
+    }
+
+    .story-layout {
+      grid-template-columns: 90px minmax(0, 1fr) !important;
+
+      height: calc(100svh - 105px) !important;
+      max-height: 560px !important;
+    }
+
+    .story-tab {
+      min-height: 60px !important;
+      padding: 8px 7px !important;
+    }
+
+    .story-tab span {
+      font-size: 10px !important;
+    }
+
+    .story-tab small {
+      font-size: 8px !important;
+      margin-bottom: 3px !important;
+    }
+
+    .story-content {
+      padding: 24px 30px !important;
+      align-items: center !important;
+    }
+
+    .story-panel h3 {
+      font-size: clamp(
+        30px,
+        6vw,
+        48px
+      ) !important;
+
+      margin-bottom: 14px !important;
+    }
+
+    .story-panel p {
+      font-size: clamp(
+        15px,
+        2.8vw,
+        19px
+      ) !important;
+
+      line-height: 1.45 !important;
+    }
+  }
+}
