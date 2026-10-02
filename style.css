@@ -4374,3 +4374,25 @@ body {
   }
 
 }
+/* =========================================================
+   BANK ACCOUNT — LUXURY GOLD
+========================================================= */
+
+.account-number {
+  color: var(--gold) !important;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-shadow: 0 2px 12px rgba(199,166,107,.12);
+}
+
+.account-owner {
+  color: var(--text) !important;
+}
+
+.account-bank {
+  color: var(--muted) !important;
+  letter-spacing: .18em;
+  font-size: 10px;
+}
