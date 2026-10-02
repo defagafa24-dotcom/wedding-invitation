@@ -4259,3 +4259,118 @@ body {
     filter: none !important;
   }
 }
+/* =========================================================
+   V4 FIX — READABILITY + ONE LAST THING
+========================================================= */
+
+/* Make the final surprise readable on the dark background */
+
+.last-thing-section {
+  color: var(--ivory);
+  text-align: center;
+}
+
+.last-thing-button {
+  position: relative;
+  z-index: 5;
+  border: 1px solid rgba(199,166,107,.45);
+  background: rgba(24,35,45,.72);
+  color: var(--ivory) !important;
+  cursor: pointer;
+  padding: 28px 42px;
+  transition:
+    transform .5s ease,
+    background .5s ease,
+    border-color .5s ease,
+    box-shadow .5s ease;
+}
+
+.last-thing-button:hover {
+  transform: translateY(-4px);
+  background: rgba(34,49,61,.88);
+  border-color: var(--gold);
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.18);
+}
+
+.last-thing-button span {
+  color: var(--ivory) !important;
+}
+
+.last-thing-button small {
+  color: var(--gold-soft) !important;
+}
+
+.last-thing-message {
+  position: relative;
+  z-index: 5;
+  color: var(--ivory);
+  margin-top: 38px;
+}
+
+.last-thing-message p {
+  color: var(--ivory) !important;
+}
+
+.last-thing-message span {
+  color: var(--gold-soft) !important;
+}
+
+.last-thing-message .ornament {
+  color: var(--gold) !important;
+}
+
+
+/* =========================================================
+   V4 FIX — CEREMONY / RECEPTION READABILITY
+========================================================= */
+
+/* Keep important information clearly visible */
+
+.detail-card h3,
+.detail-card p,
+.detail-card span,
+.details-section h2,
+.details-section p {
+  color: var(--text);
+}
+
+.detail-card h3 {
+  opacity: 1;
+}
+
+.detail-card p {
+  opacity: .82;
+}
+
+
+/* Prevent cinematic overlays from washing out text */
+
+.details-section,
+.detail-card {
+  isolation: isolate;
+}
+
+.details-section > *,
+.detail-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =========================================================
+   MOBILE FIX
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .last-thing-button {
+    width: min(88vw, 420px);
+    padding: 24px 28px;
+  }
+
+  .last-thing-message {
+    width: min(88vw, 620px);
+  }
+
+}
