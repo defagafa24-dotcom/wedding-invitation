@@ -4898,3 +4898,21 @@ body {
   }
 
 }
+/* =========================================================
+   FIX — ACCOUNT NUMBER BLUE LINK
+========================================================= */
+
+.gift-account-reveal .account-number,
+.gift-account-reveal .account-number a {
+  color: var(--gold-soft) !important;
+  -webkit-text-fill-color: var(--gold-soft) !important;
+  text-decoration: none !important;
+}
+
+.gift-account-reveal .account-number a:visited,
+.gift-account-reveal .account-number a:hover,
+.gift-account-reveal .account-number a:active {
+  color: var(--gold-soft) !important;
+  -webkit-text-fill-color: var(--gold-soft) !important;
+  text-decoration: none !important;
+}
