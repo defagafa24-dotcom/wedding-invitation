@@ -6340,3 +6340,71 @@ body {
     transition: none !important;
   }
 }
+
+/* ===== MOBILE WELCOME LAYOUT FIX ===== */
+@media (max-width: 759px) {
+  .welcome {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 18px !important;
+    min-height: 100svh;
+    height: auto !important;
+    padding: 54px 18px 42px !important;
+    overflow: hidden;
+    text-align: center !important;
+  }
+
+  .welcome-inner {
+    order: 1;
+    position: relative;
+    z-index: 4;
+    width: 100% !important;
+    max-width: 440px;
+    margin: 0 auto !important;
+  }
+
+  .invitation-stage {
+    order: 2;
+    position: relative !important;
+    z-index: 2;
+    width: 100% !important;
+    max-width: 300px;
+    height: 300px !important;
+    margin: 0 auto !important;
+    flex: 0 0 auto;
+  }
+
+  .invitation-card-3d {
+    width: min(190px, 52vw) !important;
+  }
+
+  .stage-hint {
+    bottom: 0;
+    font-size: 7px;
+    white-space: nowrap;
+  }
+
+  .welcome h1 {
+    font-size: clamp(42px, 11vw, 58px) !important;
+    line-height: 1.02;
+    margin: 12px 0 !important;
+  }
+
+  .welcome .names {
+    font-size: clamp(10px, 2.8vw, 13px);
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+  }
+
+  .welcome .welcome-date {
+    margin: 20px 0 !important;
+  }
+
+  #openBtn {
+    position: relative;
+    z-index: 5;
+    max-width: 100%;
+  }
+}
