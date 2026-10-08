@@ -983,3 +983,65 @@ if (giftRevealBtn && giftReveal) {
   }
 
 })();
+
+/* ===== 3D INVITATION POINTER INTERACTION ===== */
+(() => {
+  const stage = document.getElementById("invitationStage");
+  if (!stage) return;
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (reduceMotion) return;
+
+  let frame = 0;
+
+  function tiltAt(clientX, clientY) {
+    const rect = stage.getBoundingClientRect();
+    const x = (clientX - rect.left) / rect.width - 0.5;
+    const y = (clientY - rect.top) / rect.height - 0.5;
+
+    cancelAnimationFrame(frame);
+
+    frame = requestAnimationFrame(() => {
+      stage.style.setProperty(
+        "--tilt-y",
+        (x * 20).toFixed(2) + "deg"
+      );
+
+      stage.style.setProperty(
+        "--tilt-x",
+        (y * -16).toFixed(2) + "deg"
+      );
+    });
+  }
+
+  stage.addEventListener("pointermove", event => {
+    if (event.pointerType === "touch") return;
+
+    tiltAt(event.clientX, event.clientY);
+  });
+
+  function resetTilt() {
+    stage.style.setProperty("--tilt-x", "0deg");
+    stage.style.setProperty("--tilt-y", "0deg");
+  }
+
+  stage.addEventListener("pointerleave", resetTilt);
+
+  stage.addEventListener(
+    "touchmove",
+    event => {
+      if (!event.touches.length) return;
+
+      const touch = event.touches[0];
+      tiltAt(touch.clientX, touch.clientY);
+    },
+    { passive: true }
+  );
+
+  stage.addEventListener("touchend", resetTilt, {
+    passive: true
+  });
+})();
