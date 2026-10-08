@@ -984,64 +984,65 @@ if (giftRevealBtn && giftReveal) {
 
 })();
 
-/* ===== 3D INVITATION POINTER INTERACTION ===== */
+/* ===== 3D INVITATION INTERACTION FIX ===== */
 (() => {
   const stage = document.getElementById("invitationStage");
-  if (!stage) return;
+  const card = document.getElementById("invitationCard");
 
-  const reduceMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+  if (!stage || !card) return;
 
-  if (reduceMotion) return;
+  let resetTimer;
 
-  let frame = 0;
+  function tiltCard(x, y) {
+    const rect = card.getBoundingClientRect();
 
-  function tiltAt(clientX, clientY) {
-    const rect = stage.getBoundingClientRect();
-    const x = (clientX - rect.left) / rect.width - 0.5;
-    const y = (clientY - rect.top) / rect.height - 0.5;
+    const offsetX = (x - rect.left) / rect.width - 0.5;
+    const offsetY = (y - rect.top) / rect.height - 0.5;
 
-    cancelAnimationFrame(frame);
+    card.style.setProperty(
+      "--tilt-y",
+      `${offsetX * 24}deg`
+    );
 
-    frame = requestAnimationFrame(() => {
-      stage.style.setProperty(
-        "--tilt-y",
-        (x * 20).toFixed(2) + "deg"
-      );
+    card.style.setProperty(
+      "--tilt-x",
+      `${offsetY * -20}deg`
+    );
+  }
 
-      stage.style.setProperty(
-        "--tilt-x",
-        (y * -16).toFixed(2) + "deg"
-      );
-    });
+  function resetCard() {
+    card.style.setProperty("--tilt-x", "0deg");
+    card.style.setProperty("--tilt-y", "0deg");
   }
 
   stage.addEventListener("pointermove", event => {
     if (event.pointerType === "touch") return;
-
-    tiltAt(event.clientX, event.clientY);
+    tiltCard(event.clientX, event.clientY);
   });
 
-  function resetTilt() {
-    stage.style.setProperty("--tilt-x", "0deg");
-    stage.style.setProperty("--tilt-y", "0deg");
-  }
+  stage.addEventListener("pointerleave", resetCard);
 
-  stage.addEventListener("pointerleave", resetTilt);
+  stage.addEventListener("touchstart", event => {
+    clearTimeout(resetTimer);
 
-  stage.addEventListener(
-    "touchmove",
-    event => {
-      if (!event.touches.length) return;
-
+    if (event.touches.length) {
       const touch = event.touches[0];
-      tiltAt(touch.clientX, touch.clientY);
-    },
-    { passive: true }
-  );
+      tiltCard(touch.clientX, touch.clientY);
+    }
+  }, { passive: true });
 
-  stage.addEventListener("touchend", resetTilt, {
+  stage.addEventListener("touchmove", event => {
+    if (!event.touches.length) return;
+
+    const touch = event.touches[0];
+    tiltCard(touch.clientX, touch.clientY);
+  }, { passive: true });
+
+  stage.addEventListener("touchend", () => {
+    resetTimer = setTimeout(resetCard, 500);
+  }, { passive: true });
+
+  stage.addEventListener("touchcancel", resetCard, {
     passive: true
   });
 })();
