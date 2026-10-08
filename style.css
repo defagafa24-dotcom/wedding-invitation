@@ -5263,3 +5263,1080 @@ body {
     }
   }
 }
+
+/* ===== 3D WEDDING INVITATION ===== */
+
+.welcome {
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 50% 45%,
+      #34434b 0%, transparent 48%),
+    #101a23;
+}
+
+.invitation-stage {
+  position: relative;
+  width: min(360px, 82vw);
+  height: 390px;
+  margin: 12px auto 0;
+  display: grid;
+  place-items: center;
+  perspective: 1200px;
+  touch-action: pan-y;
+  isolation: isolate;
+}
+
+.stage-glow {
+  position: absolute;
+  width: 80%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(205,174,120,.28),
+    rgba(169,130,134,.08) 48%,
+    transparent 72%
+  );
+  filter: blur(12px);
+  animation: stageGlow 5s ease-in-out infinite;
+}
+
+.invitation-card-3d {
+  position: relative;
+  z-index: 2;
+  width: min(260px, 66vw);
+  aspect-ratio: .69;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--tilt-x, 0deg))
+             rotateY(var(--tilt-y, 0deg))
+             rotateZ(-4deg);
+  transition: transform .25s ease-out;
+  animation: cardFloat 5s ease-in-out infinite;
+  filter: drop-shadow(22px 30px 18px rgba(0,0,0,.38));
+}
+
+.card-edge {
+  position: absolute;
+  inset: 5px -7px -7px 7px;
+  border-radius: 3px;
+  background: linear-gradient(
+    135deg, #a98a5d, #f3e4c5, #92734c
+  );
+  transform: translateZ(-8px);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 22px 15px;
+  color: #26333a;
+  text-align: center;
+  border: 1px solid #b89a68;
+  outline: 1px solid rgba(150,119,72,.4);
+  outline-offset: -8px;
+  border-radius: 2px;
+  background:
+    radial-gradient(ellipse at 10% 8%,
+      rgba(199,166,107,.18), transparent 38%),
+    radial-gradient(ellipse at 90% 95%,
+      rgba(169,130,134,.15), transparent 36%),
+    linear-gradient(135deg, #fffdf6, #f2e9d8, #fffaf0);
+  box-shadow: inset 0 0 30px rgba(119,93,56,.08);
+  transform: translateZ(2px);
+}
+
+.card-monogram {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 40px;
+  line-height: 1;
+  color: #8e7047;
+}
+
+.card-monogram span {
+  color: #a98286;
+  font-size: 25px;
+  font-style: italic;
+}
+
+.card-rule {
+  display: flex;
+  align-items: center;
+  width: 65%;
+  gap: 7px;
+  margin: 13px 0;
+}
+
+.card-rule::before,
+.card-rule::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: #c7a66b;
+}
+
+.card-rule i {
+  width: 6px;
+  height: 6px;
+  border: 1px solid #c7a66b;
+  transform: rotate(45deg);
+}
+
+.card-kicker {
+  font-size: 6px;
+  letter-spacing: .15em;
+  color: #81745f;
+}
+
+.card-script {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 20px;
+  font-style: italic;
+  color: #a98286;
+  margin-top: 12px;
+}
+
+.card-main {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 29px;
+  line-height: 1;
+  margin-top: 4px;
+}
+
+.card-flower {
+  font-size: 27px;
+  line-height: 1;
+  color: #b69763;
+  margin: 11px 0 8px;
+}
+
+.card-couple {
+  font-size: 8px;
+  letter-spacing: .16em;
+  color: #5d625d;
+}
+
+.card-couple span {
+  color: #a98286;
+  padding: 0 3px;
+}
+
+.card-date {
+  margin-top: 8px;
+  font-size: 8px;
+  letter-spacing: .22em;
+  color: #8e7047;
+}
+
+.card-corner {
+  position: absolute;
+  font-family: serif;
+  color: rgba(166,132,81,.72);
+  font-size: 24px;
+}
+
+.corner-tl {
+  top: 14px;
+  left: 15px;
+  transform: rotate(-45deg);
+}
+
+.corner-tr {
+  top: 14px;
+  right: 15px;
+  transform: scaleX(-1) rotate(-45deg);
+}
+
+.corner-bl {
+  bottom: 14px;
+  left: 15px;
+  transform: scaleY(-1) rotate(-45deg);
+}
+
+.corner-br {
+  bottom: 14px;
+  right: 15px;
+  transform: scale(-1) rotate(-45deg);
+}
+
+.floating-orbit {
+  position: absolute;
+  width: 82%;
+  height: 82%;
+  border: 1px solid rgba(199,166,107,.18);
+  border-radius: 50%;
+  transform: rotateX(65deg) rotateZ(-22deg);
+}
+
+.orbit-a {
+  animation: orbitSpin 18s linear infinite;
+}
+
+.orbit-b {
+  width: 65%;
+  height: 100%;
+  border-color: rgba(169,130,134,.2);
+  transform: rotateY(64deg) rotateZ(25deg);
+  animation: orbitSpin 24s linear infinite reverse;
+}
+
+.floating-petal {
+  position: absolute;
+  z-index: 3;
+  color: #d6bb85;
+  text-shadow: 0 4px 12px rgba(0,0,0,.2);
+  animation: petalDrift 6s ease-in-out infinite;
+}
+
+.petal-a {
+  top: 12%;
+  right: 8%;
+  font-size: 25px;
+}
+
+.petal-b {
+  bottom: 20%;
+  left: 7%;
+  font-size: 29px;
+  color: #bd9397;
+  animation-delay: -2s;
+}
+
+.petal-c {
+  top: 32%;
+  left: 3%;
+  font-size: 20px;
+  animation-delay: -4s;
+}
+
+.stage-hint {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 8px;
+  letter-spacing: .15em;
+  color: rgba(245,240,231,.58);
+}
+
+@keyframes cardFloat {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -10px; }
+}
+
+@keyframes stageGlow {
+  0%, 100% { opacity: .55; scale: 1; }
+  50% { opacity: 1; scale: 1.13; }
+}
+
+@keyframes orbitSpin {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+@keyframes petalDrift {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  50% { translate: 8px -15px; rotate: 18deg; }
+}
+
+/* Desktop layout */
+@media (min-width: 760px) {
+  .welcome {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, .85fr);
+    gap: 3vw;
+    padding: 50px 8vw;
+    text-align: left;
+  }
+
+  .welcome-inner {
+    justify-self: center;
+    max-width: 520px;
+  }
+
+  .invitation-stage {
+    grid-column: 2;
+    grid-row: 1;
+    width: min(430px, 38vw);
+    height: 540px;
+    margin: 0 auto;
+  }
+
+  .invitation-card-3d {
+    width: min(310px, 28vw);
+  }
+}
+
+/* Mobile layout */
+@media (max-width: 759px) {
+  .welcome {
+    padding: 24px 18px;
+  }
+
+  .invitation-stage {
+    height: 350px;
+    margin-top: 0;
+  }
+
+  .invitation-card-3d {
+    width: min(220px, 60vw);
+  }
+
+  .card-face {
+    padding: 18px 14px;
+  }
+
+  .card-monogram {
+    font-size: 35px;
+  }
+
+  .card-main {
+    font-size: 25px;
+  }
+
+  .card-script {
+    font-size: 17px;
+  }
+
+  .card-flower {
+    margin: 8px 0 6px;
+    font-size: 24px;
+  }
+
+  .welcome h1 {
+    font-size: clamp(48px, 12vw, 68px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invitation-card-3d,
+  .stage-glow,
+  .floating-orbit,
+  .floating-petal {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===== 3D WEDDING INVITATION ===== */
+
+.welcome {
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 50% 45%,
+      #34434b 0%, transparent 48%),
+    #101a23;
+}
+
+.invitation-stage {
+  position: relative;
+  width: min(360px, 82vw);
+  height: 390px;
+  margin: 12px auto 0;
+  display: grid;
+  place-items: center;
+  perspective: 1200px;
+  touch-action: pan-y;
+  isolation: isolate;
+}
+
+.stage-glow {
+  position: absolute;
+  width: 80%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(205,174,120,.28),
+    rgba(169,130,134,.08) 48%,
+    transparent 72%
+  );
+  filter: blur(12px);
+  animation: stageGlow 5s ease-in-out infinite;
+}
+
+.invitation-card-3d {
+  position: relative;
+  z-index: 2;
+  width: min(260px, 66vw);
+  aspect-ratio: .69;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--tilt-x, 0deg))
+             rotateY(var(--tilt-y, 0deg))
+             rotateZ(-4deg);
+  transition: transform .25s ease-out;
+  animation: cardFloat 5s ease-in-out infinite;
+  filter: drop-shadow(22px 30px 18px rgba(0,0,0,.38));
+}
+
+.card-edge {
+  position: absolute;
+  inset: 5px -7px -7px 7px;
+  border-radius: 3px;
+  background: linear-gradient(
+    135deg, #a98a5d, #f3e4c5, #92734c
+  );
+  transform: translateZ(-8px);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 22px 15px;
+  color: #26333a;
+  text-align: center;
+  border: 1px solid #b89a68;
+  outline: 1px solid rgba(150,119,72,.4);
+  outline-offset: -8px;
+  border-radius: 2px;
+  background:
+    radial-gradient(ellipse at 10% 8%,
+      rgba(199,166,107,.18), transparent 38%),
+    radial-gradient(ellipse at 90% 95%,
+      rgba(169,130,134,.15), transparent 36%),
+    linear-gradient(135deg, #fffdf6, #f2e9d8, #fffaf0);
+  box-shadow: inset 0 0 30px rgba(119,93,56,.08);
+  transform: translateZ(2px);
+}
+
+.card-monogram {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 40px;
+  line-height: 1;
+  color: #8e7047;
+}
+
+.card-monogram span {
+  color: #a98286;
+  font-size: 25px;
+  font-style: italic;
+}
+
+.card-rule {
+  display: flex;
+  align-items: center;
+  width: 65%;
+  gap: 7px;
+  margin: 13px 0;
+}
+
+.card-rule::before,
+.card-rule::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: #c7a66b;
+}
+
+.card-rule i {
+  width: 6px;
+  height: 6px;
+  border: 1px solid #c7a66b;
+  transform: rotate(45deg);
+}
+
+.card-kicker {
+  font-size: 6px;
+  letter-spacing: .15em;
+  color: #81745f;
+}
+
+.card-script {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 20px;
+  font-style: italic;
+  color: #a98286;
+  margin-top: 12px;
+}
+
+.card-main {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 29px;
+  line-height: 1;
+  margin-top: 4px;
+}
+
+.card-flower {
+  font-size: 27px;
+  line-height: 1;
+  color: #b69763;
+  margin: 11px 0 8px;
+}
+
+.card-couple {
+  font-size: 8px;
+  letter-spacing: .16em;
+  color: #5d625d;
+}
+
+.card-couple span {
+  color: #a98286;
+  padding: 0 3px;
+}
+
+.card-date {
+  margin-top: 8px;
+  font-size: 8px;
+  letter-spacing: .22em;
+  color: #8e7047;
+}
+
+.card-corner {
+  position: absolute;
+  font-family: serif;
+  color: rgba(166,132,81,.72);
+  font-size: 24px;
+}
+
+.corner-tl {
+  top: 14px;
+  left: 15px;
+  transform: rotate(-45deg);
+}
+
+.corner-tr {
+  top: 14px;
+  right: 15px;
+  transform: scaleX(-1) rotate(-45deg);
+}
+
+.corner-bl {
+  bottom: 14px;
+  left: 15px;
+  transform: scaleY(-1) rotate(-45deg);
+}
+
+.corner-br {
+  bottom: 14px;
+  right: 15px;
+  transform: scale(-1) rotate(-45deg);
+}
+
+.floating-orbit {
+  position: absolute;
+  width: 82%;
+  height: 82%;
+  border: 1px solid rgba(199,166,107,.18);
+  border-radius: 50%;
+  transform: rotateX(65deg) rotateZ(-22deg);
+}
+
+.orbit-a {
+  animation: orbitSpin 18s linear infinite;
+}
+
+.orbit-b {
+  width: 65%;
+  height: 100%;
+  border-color: rgba(169,130,134,.2);
+  transform: rotateY(64deg) rotateZ(25deg);
+  animation: orbitSpin 24s linear infinite reverse;
+}
+
+.floating-petal {
+  position: absolute;
+  z-index: 3;
+  color: #d6bb85;
+  text-shadow: 0 4px 12px rgba(0,0,0,.2);
+  animation: petalDrift 6s ease-in-out infinite;
+}
+
+.petal-a {
+  top: 12%;
+  right: 8%;
+  font-size: 25px;
+}
+
+.petal-b {
+  bottom: 20%;
+  left: 7%;
+  font-size: 29px;
+  color: #bd9397;
+  animation-delay: -2s;
+}
+
+.petal-c {
+  top: 32%;
+  left: 3%;
+  font-size: 20px;
+  animation-delay: -4s;
+}
+
+.stage-hint {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 8px;
+  letter-spacing: .15em;
+  color: rgba(245,240,231,.58);
+}
+
+@keyframes cardFloat {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -10px; }
+}
+
+@keyframes stageGlow {
+  0%, 100% { opacity: .55; scale: 1; }
+  50% { opacity: 1; scale: 1.13; }
+}
+
+@keyframes orbitSpin {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+@keyframes petalDrift {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  50% { translate: 8px -15px; rotate: 18deg; }
+}
+
+/* Desktop layout */
+@media (min-width: 760px) {
+  .welcome {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, .85fr);
+    gap: 3vw;
+    padding: 50px 8vw;
+    text-align: left;
+  }
+
+  .welcome-inner {
+    justify-self: center;
+    max-width: 520px;
+  }
+
+  .invitation-stage {
+    grid-column: 2;
+    grid-row: 1;
+    width: min(430px, 38vw);
+    height: 540px;
+    margin: 0 auto;
+  }
+
+  .invitation-card-3d {
+    width: min(310px, 28vw);
+  }
+}
+
+/* Mobile layout */
+@media (max-width: 759px) {
+  .welcome {
+    padding: 24px 18px;
+  }
+
+  .invitation-stage {
+    height: 350px;
+    margin-top: 0;
+  }
+
+  .invitation-card-3d {
+    width: min(220px, 60vw);
+  }
+
+  .card-face {
+    padding: 18px 14px;
+  }
+
+  .card-monogram {
+    font-size: 35px;
+  }
+
+  .card-main {
+    font-size: 25px;
+  }
+
+  .card-script {
+    font-size: 17px;
+  }
+
+  .card-flower {
+    margin: 8px 0 6px;
+    font-size: 24px;
+  }
+
+  .welcome h1 {
+    font-size: clamp(48px, 12vw, 68px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invitation-card-3d,
+  .stage-glow,
+  .floating-orbit,
+  .floating-petal {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===== 3D WEDDING INVITATION ===== */
+
+.welcome {
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 50% 45%,
+      #34434b 0%, transparent 48%),
+    #101a23;
+}
+
+.invitation-stage {
+  position: relative;
+  width: min(360px, 82vw);
+  height: 390px;
+  margin: 12px auto 0;
+  display: grid;
+  place-items: center;
+  perspective: 1200px;
+  touch-action: pan-y;
+  isolation: isolate;
+}
+
+.stage-glow {
+  position: absolute;
+  width: 80%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(205,174,120,.28),
+    rgba(169,130,134,.08) 48%,
+    transparent 72%
+  );
+  filter: blur(12px);
+  animation: stageGlow 5s ease-in-out infinite;
+}
+
+.invitation-card-3d {
+  position: relative;
+  z-index: 2;
+  width: min(260px, 66vw);
+  aspect-ratio: .69;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--tilt-x, 0deg))
+             rotateY(var(--tilt-y, 0deg))
+             rotateZ(-4deg);
+  transition: transform .25s ease-out;
+  animation: cardFloat 5s ease-in-out infinite;
+  filter: drop-shadow(22px 30px 18px rgba(0,0,0,.38));
+}
+
+.card-edge {
+  position: absolute;
+  inset: 5px -7px -7px 7px;
+  border-radius: 3px;
+  background: linear-gradient(
+    135deg, #a98a5d, #f3e4c5, #92734c
+  );
+  transform: translateZ(-8px);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 22px 15px;
+  color: #26333a;
+  text-align: center;
+  border: 1px solid #b89a68;
+  outline: 1px solid rgba(150,119,72,.4);
+  outline-offset: -8px;
+  border-radius: 2px;
+  background:
+    radial-gradient(ellipse at 10% 8%,
+      rgba(199,166,107,.18), transparent 38%),
+    radial-gradient(ellipse at 90% 95%,
+      rgba(169,130,134,.15), transparent 36%),
+    linear-gradient(135deg, #fffdf6, #f2e9d8, #fffaf0);
+  box-shadow: inset 0 0 30px rgba(119,93,56,.08);
+  transform: translateZ(2px);
+}
+
+.card-monogram {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 40px;
+  line-height: 1;
+  color: #8e7047;
+}
+
+.card-monogram span {
+  color: #a98286;
+  font-size: 25px;
+  font-style: italic;
+}
+
+.card-rule {
+  display: flex;
+  align-items: center;
+  width: 65%;
+  gap: 7px;
+  margin: 13px 0;
+}
+
+.card-rule::before,
+.card-rule::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: #c7a66b;
+}
+
+.card-rule i {
+  width: 6px;
+  height: 6px;
+  border: 1px solid #c7a66b;
+  transform: rotate(45deg);
+}
+
+.card-kicker {
+  font-size: 6px;
+  letter-spacing: .15em;
+  color: #81745f;
+}
+
+.card-script {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 20px;
+  font-style: italic;
+  color: #a98286;
+  margin-top: 12px;
+}
+
+.card-main {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 29px;
+  line-height: 1;
+  margin-top: 4px;
+}
+
+.card-flower {
+  font-size: 27px;
+  line-height: 1;
+  color: #b69763;
+  margin: 11px 0 8px;
+}
+
+.card-couple {
+  font-size: 8px;
+  letter-spacing: .16em;
+  color: #5d625d;
+}
+
+.card-couple span {
+  color: #a98286;
+  padding: 0 3px;
+}
+
+.card-date {
+  margin-top: 8px;
+  font-size: 8px;
+  letter-spacing: .22em;
+  color: #8e7047;
+}
+
+.card-corner {
+  position: absolute;
+  font-family: serif;
+  color: rgba(166,132,81,.72);
+  font-size: 24px;
+}
+
+.corner-tl {
+  top: 14px;
+  left: 15px;
+  transform: rotate(-45deg);
+}
+
+.corner-tr {
+  top: 14px;
+  right: 15px;
+  transform: scaleX(-1) rotate(-45deg);
+}
+
+.corner-bl {
+  bottom: 14px;
+  left: 15px;
+  transform: scaleY(-1) rotate(-45deg);
+}
+
+.corner-br {
+  bottom: 14px;
+  right: 15px;
+  transform: scale(-1) rotate(-45deg);
+}
+
+.floating-orbit {
+  position: absolute;
+  width: 82%;
+  height: 82%;
+  border: 1px solid rgba(199,166,107,.18);
+  border-radius: 50%;
+  transform: rotateX(65deg) rotateZ(-22deg);
+}
+
+.orbit-a {
+  animation: orbitSpin 18s linear infinite;
+}
+
+.orbit-b {
+  width: 65%;
+  height: 100%;
+  border-color: rgba(169,130,134,.2);
+  transform: rotateY(64deg) rotateZ(25deg);
+  animation: orbitSpin 24s linear infinite reverse;
+}
+
+.floating-petal {
+  position: absolute;
+  z-index: 3;
+  color: #d6bb85;
+  text-shadow: 0 4px 12px rgba(0,0,0,.2);
+  animation: petalDrift 6s ease-in-out infinite;
+}
+
+.petal-a {
+  top: 12%;
+  right: 8%;
+  font-size: 25px;
+}
+
+.petal-b {
+  bottom: 20%;
+  left: 7%;
+  font-size: 29px;
+  color: #bd9397;
+  animation-delay: -2s;
+}
+
+.petal-c {
+  top: 32%;
+  left: 3%;
+  font-size: 20px;
+  animation-delay: -4s;
+}
+
+.stage-hint {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 8px;
+  letter-spacing: .15em;
+  color: rgba(245,240,231,.58);
+}
+
+@keyframes cardFloat {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -10px; }
+}
+
+@keyframes stageGlow {
+  0%, 100% { opacity: .55; scale: 1; }
+  50% { opacity: 1; scale: 1.13; }
+}
+
+@keyframes orbitSpin {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+@keyframes petalDrift {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  50% { translate: 8px -15px; rotate: 18deg; }
+}
+
+/* Desktop layout */
+@media (min-width: 760px) {
+  .welcome {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, .85fr);
+    gap: 3vw;
+    padding: 50px 8vw;
+    text-align: left;
+  }
+
+  .welcome-inner {
+    justify-self: center;
+    max-width: 520px;
+  }
+
+  .invitation-stage {
+    grid-column: 2;
+    grid-row: 1;
+    width: min(430px, 38vw);
+    height: 540px;
+    margin: 0 auto;
+  }
+
+  .invitation-card-3d {
+    width: min(310px, 28vw);
+  }
+}
+
+/* Mobile layout */
+@media (max-width: 759px) {
+  .welcome {
+    padding: 24px 18px;
+  }
+
+  .invitation-stage {
+    height: 350px;
+    margin-top: 0;
+  }
+
+  .invitation-card-3d {
+    width: min(220px, 60vw);
+  }
+
+  .card-face {
+    padding: 18px 14px;
+  }
+
+  .card-monogram {
+    font-size: 35px;
+  }
+
+  .card-main {
+    font-size: 25px;
+  }
+
+  .card-script {
+    font-size: 17px;
+  }
+
+  .card-flower {
+    margin: 8px 0 6px;
+    font-size: 24px;
+  }
+
+  .welcome h1 {
+    font-size: clamp(48px, 12vw, 68px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invitation-card-3d,
+  .stage-glow,
+  .floating-orbit,
+  .floating-petal {
+    animation: none !important;
+    transition: none !important;
+  }
+}
