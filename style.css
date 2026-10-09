@@ -6408,3 +6408,217 @@ body {
     max-width: 100%;
   }
 }
+
+/* ===== CINEMATIC WEDDING SCENE ===== */
+
+#welcome {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  perspective: 1200px;
+  background:
+    radial-gradient(ellipse at 50% 40%,
+      rgba(71, 91, 100, .65), transparent 48%),
+    #0d1720;
+}
+
+#welcome .cinema-scene {
+  --pointer-x: 0;
+  --pointer-y: 0;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+#welcome .welcome-stars {
+  z-index: 0;
+}
+
+.cinema-halo {
+  position: absolute;
+  width: min(92vw, 780px);
+  aspect-ratio: 1;
+  top: 44%;
+  left: 50%;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(202, 173, 121, .18),
+    rgba(105, 132, 143, .06) 38%,
+    transparent 70%);
+  transform: translate3d(-50%, -50%, -160px);
+  animation: cinemaPulse 8s ease-in-out infinite;
+}
+
+.cinema-ring {
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  width: min(78vw, 650px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(204, 177, 129, .18);
+  border-radius: 50%;
+  transform-style: preserve-3d;
+}
+
+.ring-far {
+  transform:
+    translate(-50%, -50%)
+    rotateX(68deg)
+    rotateZ(-24deg);
+  animation: cinemaOrbit 36s linear infinite;
+}
+
+.ring-near {
+  width: min(58vw, 480px);
+  border-color: rgba(194, 209, 209, .13);
+  transform:
+    translate(-50%, -50%)
+    rotateY(68deg)
+    rotateX(18deg);
+  animation: cinemaOrbitReverse 42s linear infinite;
+}
+
+.cinema-lightbeam {
+  position: absolute;
+  top: -12%;
+  width: 24vw;
+  height: 78%;
+  opacity: .13;
+  filter: blur(30px);
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(220, 194, 145, .6),
+    transparent
+  );
+  transform-origin: top center;
+}
+
+.beam-left {
+  left: 12%;
+  transform: rotate(25deg);
+}
+
+.beam-right {
+  right: 10%;
+  transform: rotate(-22deg);
+  opacity: .08;
+}
+
+.cinema-dust {
+  position: absolute;
+  color: #d9bd83;
+  text-shadow: 0 0 24px rgba(214, 183, 122, .4);
+  animation: cinemaDust 8s ease-in-out infinite;
+}
+
+.dust-one {
+  top: 17%;
+  left: 18%;
+  font-size: 18px;
+}
+
+.dust-two {
+  top: 30%;
+  right: 19%;
+  font-size: 32px;
+  animation-delay: -2s;
+}
+
+.dust-three {
+  bottom: 23%;
+  left: 12%;
+  font-size: 22px;
+  animation-delay: -4s;
+}
+
+.dust-four {
+  bottom: 17%;
+  right: 16%;
+  font-size: 28px;
+  animation-delay: -6s;
+}
+
+.cinema-floor {
+  position: absolute;
+  left: -25%;
+  right: -25%;
+  bottom: -24%;
+  height: 45%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(170, 143, 98, .13),
+    transparent 66%
+  );
+  border-top: 1px solid rgba(199, 166, 107, .1);
+  transform: rotateX(68deg) translateZ(-90px);
+  transform-origin: top center;
+}
+
+#welcome .welcome-inner,
+#welcome .invitation-stage {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes cinemaOrbit {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+@keyframes cinemaOrbitReverse {
+  from { rotate: 0deg; }
+  to { rotate: -360deg; }
+}
+
+@keyframes cinemaPulse {
+  0%, 100% { opacity: .65; scale: 1; }
+  50% { opacity: 1; scale: 1.12; }
+}
+
+@keyframes cinemaDust {
+  0%, 100% {
+    translate: 0 0;
+    opacity: .35;
+  }
+  50% {
+    translate: 7px -16px;
+    opacity: .9;
+  }
+}
+
+@media (max-width: 759px) {
+  .cinema-ring {
+    width: 105vw;
+    top: 40%;
+  }
+
+  .ring-near {
+    width: 72vw;
+  }
+
+  .cinema-halo {
+    width: 115vw;
+    top: 40%;
+  }
+
+  .cinema-lightbeam {
+    width: 38vw;
+    opacity: .09;
+  }
+
+  .cinema-floor {
+    bottom: -28%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinema-ring,
+  .cinema-dust,
+  .cinema-halo {
+    animation: none !important;
+  }
+}
