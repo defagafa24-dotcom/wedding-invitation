@@ -6665,3 +6665,63 @@ body {
     transition: none !important;
   }
 }
+
+/* ===== STRONGER CINEMATIC CAMERA ===== */
+
+#welcome .cinema-scene {
+  transition: transform 0.15s linear;
+}
+
+#welcome .ring-far {
+  transform:
+    translate(-50%, -50%)
+    rotateX(68deg)
+    rotateZ(-24deg)
+    scale(calc(1 + var(--camera-progress, 0) * 0.3));
+}
+
+#welcome .ring-near {
+  transform:
+    translate(-50%, -50%)
+    rotateY(68deg)
+    rotateX(18deg)
+    scale(calc(1 + var(--camera-progress, 0) * 0.22));
+}
+
+#welcome .cinema-lightbeam {
+  translate: 0 calc(var(--camera-progress, 0) * 45px);
+}
+
+#welcome .cinema-floor {
+  translate: 0 calc(var(--camera-progress, 0) * 35px);
+}
+
+.hero .hero-inner {
+  transform:
+    translate3d(
+      0,
+      calc(var(--camera-depth, 0) * -42px),
+      0
+    )
+    scale(
+      calc(1 + (1 - abs(var(--camera-depth, 0))) * 0.035)
+    );
+  transition: transform 0.2s linear;
+}
+
+.story-section .story-background {
+  transform: translate3d(
+    0,
+    calc(var(--camera-depth, 0) * -50px),
+    0
+  ) scale(1.06);
+  transition: transform 0.2s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #welcome .cinema-scene,
+  .hero .hero-inner,
+  .story-section .story-background {
+    transition: none !important;
+  }
+}
