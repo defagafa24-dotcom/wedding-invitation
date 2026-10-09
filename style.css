@@ -6622,3 +6622,46 @@ body {
     animation: none !important;
   }
 }
+
+/* ===== CAMERA DEPTH RESPONSE ===== */
+
+.cinema-halo {
+  transform:
+    translate3d(-50%, -50%, -160px)
+    scale(calc(1 + var(--camera-progress, 0) * .14));
+}
+
+.hero .hero-inner {
+  transform: translate3d(
+    0,
+    calc(var(--camera-depth, 0) * -12px),
+    0
+  );
+  transition: transform .45s ease-out;
+}
+
+.story-section .story-background {
+  transform: translate3d(
+    0,
+    calc(var(--camera-depth, 0) * -14px),
+    0
+  );
+  transition: transform .4s ease-out;
+}
+
+#welcome .invitation-card-3d {
+  transform:
+    translateY(calc(var(--scroll-depth, 0) * -8px))
+    rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg))
+    rotateZ(-3deg);
+  transition: transform .65s cubic-bezier(.2,.7,.2,1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero .hero-inner,
+  .story-section .story-background,
+  #welcome .invitation-card-3d {
+    transition: none !important;
+  }
+}
