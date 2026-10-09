@@ -1046,3 +1046,82 @@ if (giftRevealBtn && giftReveal) {
     passive: true
   });
 })();
+
+/* ===== CINEMATIC CAMERA MOTION ===== */
+(() => {
+  const welcome = document.getElementById("welcome");
+  const scene = document.querySelector("#welcome .cinema-scene");
+  const card = document.getElementById("invitationCard");
+
+  if (!welcome || !scene) return;
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (reducedMotion) return;
+
+  let ticking = false;
+
+  function updateCamera() {
+    const height = window.innerHeight || 1;
+    const welcomeRect = welcome.getBoundingClientRect();
+
+    // The opening scene slowly moves as the guest scrolls away.
+    const progress = Math.max(
+      0,
+      Math.min(1, (height - welcomeRect.bottom) / height)
+    );
+
+    scene.style.setProperty(
+      "--camera-progress",
+      progress.toFixed(3)
+    );
+
+    // Give the invitation a subtle depth response to scrolling.
+    if (card) {
+      const cardRect = card.getBoundingClientRect();
+      const offset = (
+        cardRect.top + cardRect.height / 2 - height / 2
+      ) / height;
+
+      card.style.setProperty(
+        "--scroll-depth",
+        Math.max(-1, Math.min(1, offset)).toFixed(3)
+      );
+    }
+
+    // Gentle parallax between foreground and background sections.
+    document.querySelectorAll(
+      ".hero, .countdown-section, .story-section, .gallery-section, .closing"
+    ).forEach(section => {
+      const rect = section.getBoundingClientRect();
+      const depth = Math.max(
+        -1,
+        Math.min(1, (
+          rect.top + rect.height / 2 - height / 2
+        ) / height)
+      );
+
+      section.style.setProperty(
+        "--camera-depth",
+        depth.toFixed(3)
+      );
+    });
+
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", () => {
+    if (ticking) return;
+
+    ticking = true;
+    requestAnimationFrame(updateCamera);
+  }, { passive: true });
+
+  window.addEventListener("resize", updateCamera, {
+    passive: true
+  });
+
+  updateCamera();
+})();
